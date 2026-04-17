@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投顧資訊報告</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: #fff; min-height: 100vh; padding: 20px; }
+.header { background: linear-gradient(135deg, #e94560, #ffd700); padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 30px; }
+.header h1 { font-size: 2rem; }
+.header p { color: #eee; }
+.stock-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; margin-bottom: 20px; backdrop-filter: blur(10px); }
+.stock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+.stock-code { font-size: 1.5rem; font-weight: bold; color: #e94560; }
+.stock-name { font-size: 1.2rem; }
+.stock-biz { color: #ffd700; font-size: 0.9rem; }
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; }
+.metric { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; text-align: center; }
+.metric-label { font-size: 0.8rem; color: #aaa; }
+.metric-value { font-size: 1.3rem; font-weight: bold; }
+.positive { color: #00d26a; }
+.negative { color: #e94560; }
+.recommend { background: linear-gradient(135deg, rgba(0,210,106,0.3), rgba(0,0,0,0.2)); border: 2px solid #00d26a; }
+.warning { background: linear-gradient(135deg, rgba(233,69,96,0.3), rgba(0,0,0,0.2)); border: 2px solid #e94560; }
+.footer { text-align: center; margin-top: 40px; color: #666; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<h1>📊 投顧資訊報告</h1>
+<p>少爺的持股組合 | 2026年4月</p>
+</div>
+
+<div class="stock-card ">
+<div class="stock-header">
+<div><span class="stock-code">1503</span> <span class="stock-name">士電</span></div>
+<div class="stock-biz">Electric Motors</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">股價</div>
+<div class="metric-value">$197.5</div>
+</div>
+<div class="metric">
+<div class="metric-label">本益比</div>
+<div class="metric-value">31.6</div>
+</div>
+<div class="metric">
+<div class="metric-label">預估本益比</div>
+<div class="metric-value">14.4</div>
+</div>
+<div class="metric">
+<div class="metric-label">營收成長</div>
+<div class="metric-value positive">+8.6%</div>
+</div>
+<div class="metric">
+<div class="metric-label">盈餘成長</div>
+<div class="metric-value negative">-3.3%</div>
+</div>
+<div class="metric">
+<div class="metric-label">ROE</div>
+<div class="metric-value ">8.9%</div>
+</div>
+<div class="metric">
+<div class="metric-label">評價</div>
+<div class="metric-value">观望</div>
+</div>
+</div>
+</div>
+
+<div class="stock-card warning">
+<div class="stock-header">
+<div><span class="stock-code">1605</span> <span class="stock-name">華新</span></div>
+<div class="stock-biz">Wafer/Renewable</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">股價</div>
+<div class="metric-value">$32.3</div>
+</div>
+<div class="metric">
+<div class="metric-label">本益比</div>
+<div class="metric-value">43.1</div>
+</div>
+<div class="metric">
+<div class="metric-label">預估本益比</div>
+<div class="metric-value">38.9</div>
+</div>
+<div class="metric">
+<div class="metric-label">營收成長</div>
+<div class="metric-value negative">-10.3%</div>
+</div>
+<div class="metric">
+<div class="metric-label">盈餘成長</div>
+<div class="metric-value negative">+0.0%</div>
+</div>
+<div class="metric">
+<div class="metric-label">ROE</div>
+<div class="metric-value ">1.4%</div>
+</div>
+<div class="metric">
+<div class="metric-label">評價</div>
+<div class="metric-value">⚠️ 留意風險</div>
+</div>
+</div>
+</div>
+
+<div class="stock-card warning">
+<div class="stock-header">
+<div><span class="stock-code">1717</span> <span class="stock-name">長興</span></div>
+<div class="stock-biz">Chemicals/Materials</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">股價</div>
+<div class="metric-value">$81.0</div>
+</div>
+<div class="metric">
+<div class="metric-label">本益比</div>
+<div class="metric-value">57.4</div>
+</div>
+<div class="metric">
+<div class="metric-label">預估本益比</div>
+<div class="metric-value">29.2</div>
+</div>
+<div class="metric">
+<div class="metric-label">營收成長</div>
+<div class="metric-value negative">-10.2%</div>
+</div>
+<div class="metric">
+<div class="metric-label">盈餘成長</div>
+<div class="metric-value negative">-21.1%</div>
+</div>
+<div class="metric">
+<div class="metric-label">ROE</div>
+<div class="metric-value ">6.0%</div>
+</div>
+<div class="metric">
+<div class="metric-label">評價</div>
+<div class="metric-value">⚠️ 留意風險</div>
+</div>
+</div>
+</div>
+
+<div class="stock-card ">
+<div class="stock-header">
+<div><span class="stock-code">2317</span> <span class="stock-name">鴻海</span></div>
+<div class="stock-biz">Foxconn/Electronics</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">股價</div>
+<div class="metric-value">$206.0</div>
+</div>
+<div class="metric">
+<div class="metric-label">本益比</div>
+<div class="metric-value">15.4</div>
+</div>
+<div class="metric">
+<div class="metric-label">預估本益比</div>
+<div class="metric-value">10.2</div>
+</div>
+<div class="metric">
+<div class="metric-label">營收成長</div>
+<div class="metric-value positive">+22.3%</div>
+</div>
+<div class="metric">
+<div class="metric-label">盈餘成長</div>
+<div class="metric-value negative">-0.3%</div>
+</div>
+<div class="metric">
+<div class="metric-label">ROE</div>
+<div class="metric-value positive">11.3%</div>
+</div>
+<div class="metric">
+<div class="metric-label">評價</div>
+<div class="metric-value">观望</div>
+</div>
+</div>
+</div>
+
+<div class="stock-card recommend">
+<div class="stock-header">
+<div><span class="stock-code">2330</span> <span class="stock-name">台積電</span></div>
+<div class="stock-biz">TSMC/Semiconductor</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">股價</div>
+<div class="metric-value">$2030.0</div>
+</div>
+<div class="metric">
+<div class="metric-label">本益比</div>
+<div class="metric-value">27.6</div>
+</div>
+<div class="metric">
+<div class="metric-label">預估本益比</div>
+<div class="metric-value">16.9</div>
+</div>
+<div class="metric">
+<div class="metric-label">營收成長</div>
+<div class="metric-value positive">+35.1%</div>
+</div>
+<div class="metric">
+<div class="metric-label">盈餘成長</div>
+<div class="metric-value positive">+58.4%</div>
+</div>
+<div class="metric">
+<div class="metric-label">ROE</div>
+<div class="metric-value positive">36.6%</div>
+</div>
+<div class="metric">
+<div class="metric-label">評價</div>
+<div class="metric-value">⭐ 成長潛力</div>
+</div>
+</div>
+</div>
+
+<div class="stock-card recommend">
+<div class="stock-header">
+<div><span class="stock-code">2887</span> <span class="stock-name">台新新光金</span></div>
+<div class="stock-biz">Financial</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">股價</div>
+<div class="metric-value">$24.3</div>
+</div>
+<div class="metric">
+<div class="metric-label">本益比</div>
+<div class="metric-value">12.7</div>
+</div>
+<div class="metric">
+<div class="metric-label">預估本益比</div>
+<div class="metric-value">10.4</div>
+</div>
+<div class="metric">
+<div class="metric-label">營收成長</div>
+<div class="metric-value positive">+165.9%</div>
+</div>
+<div class="metric">
+<div class="metric-label">盈餘成長</div>
+<div class="metric-value positive">+155.6%</div>
+</div>
+<div class="metric">
+<div class="metric-label">ROE</div>
+<div class="metric-value positive">10.5%</div>
+</div>
+<div class="metric">
+<div class="metric-label">評價</div>
+<div class="metric-value">⭐ 成長潛力</div>
+</div>
+</div>
+</div>
+
+<div class="stock-card ">
+<div class="stock-header">
+<div><span class="stock-code">4716</span> <span class="stock-name">大立</span></div>
+<div class="stock-biz">LED/Optoelectronics</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">股價</div>
+<div class="metric-value">$0.0</div>
+</div>
+<div class="metric">
+<div class="metric-label">本益比</div>
+<div class="metric-value">N/A</div>
+</div>
+<div class="metric">
+<div class="metric-label">預估本益比</div>
+<div class="metric-value">N/A</div>
+</div>
+<div class="metric">
+<div class="metric-label">營收成長</div>
+<div class="metric-value negative">+0.0%</div>
+</div>
+<div class="metric">
+<div class="metric-label">盈餘成長</div>
+<div class="metric-value negative">+0.0%</div>
+</div>
+<div class="metric">
+<div class="metric-label">ROE</div>
+<div class="metric-value ">0.0%</div>
+</div>
+<div class="metric">
+<div class="metric-label">評價</div>
+<div class="metric-value">观望</div>
+</div>
+</div>
+</div>
+
+<div class="stock-card ">
+<div class="stock-header">
+<div><span class="stock-code">5443</span> <span class="stock-name">均豪</span></div>
+<div class="stock-biz">Semiconductor Equipment</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">股價</div>
+<div class="metric-value">$0.0</div>
+</div>
+<div class="metric">
+<div class="metric-label">本益比</div>
+<div class="metric-value">N/A</div>
+</div>
+<div class="metric">
+<div class="metric-label">預估本益比</div>
+<div class="metric-value">N/A</div>
+</div>
+<div class="metric">
+<div class="metric-label">營收成長</div>
+<div class="metric-value negative">+0.0%</div>
+</div>
+<div class="metric">
+<div class="metric-label">盈餘成長</div>
+<div class="metric-value negative">+0.0%</div>
+</div>
+<div class="metric">
+<div class="metric-label">ROE</div>
+<div class="metric-value ">0.0%</div>
+</div>
+<div class="metric">
+<div class="metric-label">評價</div>
+<div class="metric-value">观望</div>
+</div>
+</div>
+</div>
+
+<div class="stock-card warning">
+<div class="stock-header">
+<div><span class="stock-code">6613</span> <span class="stock-name">朋億</span></div>
+<div class="stock-biz">Factory Systems</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">股價</div>
+<div class="metric-value">$237.5</div>
+</div>
+<div class="metric">
+<div class="metric-label">本益比</div>
+<div class="metric-value">17.8</div>
+</div>
+<div class="metric">
+<div class="metric-label">預估本益比</div>
+<div class="metric-value">N/A</div>
+</div>
+<div class="metric">
+<div class="metric-label">營收成長</div>
+<div class="metric-value negative">-11.3%</div>
+</div>
+<div class="metric">
+<div class="metric-label">盈餘成長</div>
+<div class="metric-value negative">-41.3%</div>
+</div>
+<div class="metric">
+<div class="metric-label">ROE</div>
+<div class="metric-value positive">19.2%</div>
+</div>
+<div class="metric">
+<div class="metric-label">評價</div>
+<div class="metric-value">⚠️ 留意風險</div>
+</div>
+</div>
+</div>
+
+<div class="stock-card recommend">
+<div class="stock-header">
+<div><span class="stock-code">6667</span> <span class="stock-name">信紘科</span></div>
+<div class="stock-biz">Green Factory</div>
+</div>
+<div class="metrics">
+<div class="metric">
+<div class="metric-label">股價</div>
+<div class="metric-value">$288.5</div>
+</div>
+<div class="metric">
+<div class="metric-label">本益比</div>
+<div class="metric-value">21.1</div>
+</div>
+<div class="metric">
+<div class="metric-label">預估本益比</div>
+<div class="metric-value">14.5</div>
+</div>
+<div class="metric">
+<div class="metric-label">營收成長</div>
+<div class="metric-value positive">+61.1%</div>
+</div>
+<div class="metric">
+<div class="metric-label">盈餘成長</div>
+<div class="metric-value positive">+29.6%</div>
+</div>
+<div class="metric">
+<div class="metric-label">ROE</div>
+<div class="metric-value positive">28.2%</div>
+</div>
+<div class="metric">
+<div class="metric-label">評價</div>
+<div class="metric-value">⭐ 成長潛力</div>
+</div>
+</div>
+</div>
+
+<div class="footer">
+⚠️ 免责声明：以上资料仅供参考，不构成投资建议。投资有风险，入市需谨慎。
+</div>
+</body>
+</html>
