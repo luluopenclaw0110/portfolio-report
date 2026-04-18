@@ -8,31 +8,29 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: #fff; min-height: 100vh; padding: 20px; }
 .header { background: linear-gradient(135deg, #e94560, #ffd700); padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 30px; }
-.header h1 { font-size: 2rem; }
-.stock-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; margin-bottom: 25px; backdrop-filter: blur(10px); }
-.stock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 15px; }
+.stock-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; margin-bottom: 25px; }
+.stock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 15px; }
 .stock-code { font-size: 1.8rem; font-weight: bold; }
 .stock-name { font-size: 1.4rem; color: #ffd700; }
-.badge { padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; }
 .badge-good { background: #00d26a; }
 .badge-bad { background: #e94560; }
 .badge-mid { background: #ffa500; }
-.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin: 20px 0; }
-.metric { background: rgba(0,0,0,0.4); padding: 15px; border-radius: 10px; }
-.metric-label { font-size: 0.85rem; color: #aaa; }
-.metric-value { font-size: 1.4rem; font-weight: bold; margin-top: 5px; }
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 15px 0; }
+.metric { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px; }
+.metric-label { font-size: 0.8rem; color: #aaa; }
+.metric-value { font-size: 1.2rem; font-weight: bold; margin-top: 5px; }
 .pos { color: #00d26a; }.neg { color: #e94560; }
-.section { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; margin-top: 後20px; }
-.section h3 { color: #ffd700; margin-bottom: 15px; }
-.judge-box { background: linear-gradient(135deg, rgba(0,210,106,0.3), rgba(0,0,0,0.2)); border: 2px solid #00d26a; padding: 20px; border-radius: 10px; margin-top: 20px; }
-.warn-box { background: linear-gradient(135deg, rgba(233,69,96,0.3), rgba(0,0,0,0.2)); border: 2px solid #e94560; padding: 20px; border-radius: 10px; margin-top: 20px; }
+.section { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin-top: 15px; }
+.section h3 { color: #ffd700; margin-bottom: 10px; }
+.judge-box { border: 2px solid #00d26a; padding: 15px; border-radius: 10px; margin-top: 15px; }
+.warn-box { border: 2px solid #e94560; padding: 15px; border-radius: 10px; margin-top: 15px; }
 .footer { text-align: center; margin-top: 40px; color: #666; }
 </style>
 </head>
 <body>
 <div class="header">
 <h1>少爺持股投顧深度報告</h1>
-<p>14檔股票完整分析 | 2026年4月 深度研究版</p>
+<p>14檔股票完整分析 | 2026年4月 深度研究版（全部完成）</p>
 </div>
 
 <div class="stock-card">
@@ -41,10 +39,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">台積電</span></div>
 <div><span class="badge badge-good">強烈建議增持</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">半導體晶圓代工/AI晶片製造</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">全球最大晶圓代工廠，專攻5/3/2奈米先進製程。供應全球90%先進晶片，是NVIDIA、Apple、AMD、Qualcomm核心製造商。Q1營收1.134兆創歷史新高（年增35.1%），法說会上修2026全年營收>30%，資本支出560億美元。</p>
+<div style="color:#aaa;margin-bottom:10px;">半導體晶圓代工/AI晶片</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>全球最大晶圓代工廠，專攻5/3/2奈米。供應NVIDIA、Apple、AMD。Q1營收1.134兆（年增35.1%），法說上修2026>30%，資本支出560億美元。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">2030.0</div></div>
@@ -54,11 +52,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value pos">+35.1%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value pos">+58.4%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">36.6%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>AI晶片需求爆發，3月營收4,151億創單月新高。N3需求旺、N2放量、CoWoS擴產。法人目標價2100元。</p></div>
-<div class="section"><h3>消息面</h3><p>4/16法說會、營收指引>30%、資本支出560億美元、法人目標價2100元</p></div>
+<div class="section"><h3>判斷原因</h3><p>AI晶片需求爆發，3月營收4,151億創新高，法人目標價2100元。</p></div>
+<div class="section"><h3>消息面</h3><p>4/16法說會、營收指引>30%、資本支出560億</p></div>
 </div>
 </div>
 
@@ -68,10 +65,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">信紘科</span></div>
 <div><span class="badge badge-mid">成長潛力</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">半導體廠務工程</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">半導體廠務工程，提供：化學供應系統、氣體供應系統、研磨液供應系統、製程機能水、廢液回收處理。台積電最大廠務供應商。營收結構：廠務84-92%，綠色製程5-13%。</p>
+<div style="color:#aaa;margin-bottom:10px;">半導體廠務工程</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>台積電最大廠務供應商。化學/氣體供應系統、製程機能水、廢液回收。營收結構：廠務84-92%，綠色製程5-13%。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">288.5</div></div>
@@ -81,11 +78,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value pos">+61.1%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value pos">+29.6%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">28.2%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>3月營收6.74億（月增67%、年增41%）創新高！受惠台積電擴廠，先進製程與封裝廠建置動能強勁。</p></div>
-<div class="section"><h3>消息面</h3><p>台積電建廠、綠色製程、Q1營收15.4億年增14%</p></div>
+<div class="section"><h3>判斷原因</h3><p>3月營收6.74億（月增67%、年增41%）創新高！Q1 15.4億年增14%。</p></div>
+<div class="section"><h3>消息面</h3><p>台積電建廠、綠色製程</p></div>
 </div>
 </div>
 
@@ -95,10 +91,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">鴻海</span></div>
 <div><span class="badge badge-mid">可以考慮</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">電子代工/AI伺服器</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">全球最大電子代工廠，代工iPhone、PS5、伺服器。布局AI伺服器、電動車、半導體（封裝測試）。AI伺服器前三季營收破兆元大關，2026市占率目標>40%。</p>
+<div style="color:#aaa;margin-bottom:10px;">電子代工/AI伺服器</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>全球最大電子代工。iPhone/PS5/伺服器。AI伺服器前三季破兆元，2026市占率目標>40%。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">206.0</div></div>
@@ -108,11 +104,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value pos">+22.3%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value neg">-0.3%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">11.3%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>3月營收8,037億（年增45.57%）創3個月新高！AI伺服器動能強，新一代AI伺服器機櫃出貨增加。</p></div>
-<div class="section"><h3>消息面</h3><p>AI伺服器、3月營收年增45%、市占率目標40%</p></div>
+<div class="section"><h3>判斷原因</h3><p>3月營收8,037億（年增45.57%）創3個月新高！</p></div>
+<div class="section"><h3>消息面</h3><p>AI伺服器、45%營收成長</p></div>
 </div>
 </div>
 
@@ -122,10 +117,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">華通</span></div>
 <div><span class="badge badge-mid">成長潛力</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">PCB/載板/AI伺服器</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">PCB大廠，產品：硬板、軟板、軟硬結合板、HDI高密度板。AI伺服器2026年營收佔比預估7%（年增84%），低軌衛星佔20%+，受惠Starship及Amazon發射。泰國擴廠中。</p>
+<div style="color:#aaa;margin-bottom:10px;">PCB/AI伺服器</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>PCB大廠。AI伺服器2026佔7%（年增84%），低軌衛星20%+，受惠Starship/Amazon。泰國擴廠。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">261.5</div></div>
@@ -135,11 +130,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value pos">+6.0%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value pos">+36.0%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">14.2%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>3月營收69.43億（月增33%、年增11%），Q1累計195.48億年增16.85%！AI伺服器+低軌衛星雙引擎，資本支出將上修。</p></div>
-<div class="section"><h3>消息面</h3><p>AI伺服器PCB、低軌衛星、泰國擴廠、資本支出上修</p></div>
+<div class="section"><h3>判斷原因</h3><p>3月營收69.43億（年增11%），Q1 195.48億年增16.85%！</p></div>
+<div class="section"><h3>消息面</h3><p>AI伺服器PCB、低軌衛星</p></div>
 </div>
 </div>
 
@@ -149,10 +143,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">均豪</span></div>
 <div><span class="badge badge-mid">可以考慮</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">半導體設備/先進封裝</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">面板設備廠轉型半導體設備，跨足FOPLP封裝設備。3D NIR設備可提升後段封裝良率20%以上，接單能見度延伸至2026下半年。</p>
+<div style="color:#aaa;margin-bottom:10px;">半導體設備</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>面板轉半導體設備。FOPLP封裝設備，3D NIR提升良率20%。接單看2026下半年。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">114.0</div></div>
@@ -162,11 +156,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value neg">-17.3%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value pos">+225.7%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">6.0%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>營收-17%但盈餘暴漲225%！從面板轉向半導體，受惠CoWoS。FOPLP三年後有望銜接CoWoS動能。</p></div>
-<div class="section"><h3>消息面</h3><p>CoWoS、FOPLP封裝設備、3D NIR、接單看2026</p></div>
+<div class="section"><h3>判斷原因</h3><p>營收-17%但盈餘+225%！受惠CoWoS。</p></div>
+<div class="section"><h3>消息面</h3><p>CoWoS、FOPLP</p></div>
 </div>
 </div>
 
@@ -176,10 +169,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">士電</span></div>
 <div><span class="badge badge-mid">可以考慮</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">馬達/散熱/AI伺服器</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">台灣最大馬達製造廠，產品：工業馬達、配電變壓器、智慧電表。切入AI伺服器液冷散熱模組，切入變壓器市場。</p>
+<div style="color:#aaa;margin-bottom:10px;">馬達/AI散熱</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>台灣最大馬達廠。切入AI液冷散熱、變壓器。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">197.5</div></div>
@@ -189,11 +182,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value pos">+12.3%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value neg">-3.3%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">8.9%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>3月營收42.3億（年增35.34%），Q1累計115.6億年增12.28%。AI散熱需求旺，變壓器訂單強勁。</p></div>
-<div class="section"><h3>消息面</h3><p>AI散熱、變壓器、營收年增35%、綠能</p></div>
+<div class="section"><h3>判斷原因</h3><p>3月營收42.3億（年增35.34%），Q1 115.6億年增12.28%。</p></div>
+<div class="section"><h3>消息面</h3><p>AI散熱、變壓器</p></div>
 </div>
 </div>
 
@@ -203,10 +195,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">華新</span></div>
 <div><span class="badge badge-bad">留意風險</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">不鏽鋼/新能源</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">台灣第二大不鏽鋼廠（僅次於燁聯）。產品：不鏽鋼板/捲、鋼線、鋼管。布局太陽能電廠。</p>
+<div style="color:#aaa;margin-bottom:10px;">不鏽鋼</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>台灣第二大不鏽鋼廠。太陽能電廠。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">32.3</div></div>
@@ -216,11 +208,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value neg">-10.3%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value neg">+0.0%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">1.4%</div></div>
 </div>
 <div class="warn-box">
-<div class="section"><h3>判斷原因</h3><p>營收衰退10.3%，本益比43.1極高，營業利益率-1.9%虧損。</p></div>
-<div class="section"><h3>消息面</h3><p>不鏽鋼、太陽能、中國房產</p></div>
+<div class="section"><h3>判斷原因</h3><p>營收衰退10.3%，本益比43.1極高，營業利益率-1.9%。</p></div>
+<div class="section"><h3>消息面</h3><p>不鏽鋼、太陽能</p></div>
 </div>
 </div>
 
@@ -230,10 +221,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">長興</span></div>
 <div><span class="badge badge-bad">留意風險</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">化工材料</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">老牌化工廠，產品：合成樹脂（PU/PE）、電子化學材料（光阻、顯影液）、太陽能封裝材料。</p>
+<div style="color:#aaa;margin-bottom:10px;">化工材料</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>老牌化工。合成樹脂、電子化學材料、太陽能封裝。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">81.0</div></div>
@@ -243,11 +234,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value neg">-10.2%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value neg">-21.1%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">6.0%</div></div>
 </div>
 <div class="warn-box">
 <div class="section"><h3>判斷原因</h3><p>營收/盈餘雙衰退，本益比57.4極高。</p></div>
-<div class="section"><h3>消息面</h3><p>PCB、半導體化學、封裝材料</p></div>
+<div class="section"><h3>消息面</h3><p>PCB、半導體化學</p></div>
 </div>
 </div>
 
@@ -257,10 +247,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">朋億</span></div>
 <div><span class="badge badge-bad">留意風險</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">半導體廠務工程</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">半導體/面板廠務工程，提供：水處理系統、廢水回收、氣體污染防治設備。中國客戶為主。</p>
+<div style="color:#aaa;margin-bottom:10px;">半導體廠務</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>水處理、廢水回收、氣體污染防治。中國客戶為主。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">237.5</div></div>
@@ -270,11 +260,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value neg">-11.3%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value neg">-41.3%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">19.2%</div></div>
 </div>
 <div class="warn-box">
-<div class="section"><h3>判斷原因</h3><p>營收/盈餘大幅衰退，股利從10元縮水到3元。</p></div>
-<div class="section"><h3>消息面</h3><p>半導體建廠放緩、中國客戶</p></div>
+<div class="section"><h3>判斷原因</h3><p>營收/盈餘大幅衰退，Q1 EPS 2.71元（-41%）。</p></div>
+<div class="section"><h3>消息面</h3><p>中國客戶、半導體放緩</p></div>
 </div>
 </div>
 
@@ -284,10 +273,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">大立</span></div>
 <div><span class="badge badge-mid">可以考慮</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">合成树脂/電子材料</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">老牌化工廠，產品：不飽和聚酯树脂（涂料用）、電子化學材料。從傳統涂料轉向AI伺服器高頻材料、半導體封裝。</p>
+<div style="color:#aaa;margin-bottom:10px;">化工/電子材料</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>老牌化工轉AI電子材料。合成树脂、半導體封裝。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">16.2</div></div>
@@ -297,11 +286,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value neg">-1.7%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value neg">-182.0%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">0%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>3月營收6,406萬（月增104%、年增19%）創46個月新高！從傳統涂料轉型AI電子材料，2026年有望轉盈。</p></div>
-<div class="section"><h3>消息面</h3><p>AI電子材料、半導體封裝、營收創46個月新高</p></div>
+<div class="section"><h3>判斷原因</h3><p>3月營收6,406萬（月增104%、年增19%）創46個月新高！</p></div>
+<div class="section"><h3>消息面</h3><p>AI電子材料</p></div>
 </div>
 </div>
 
@@ -311,10 +299,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">一詮</span></div>
 <div><span class="badge badge-mid">可以考慮</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">散熱模組/AI散熱</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">AI散熱新星！散熱片、散熱模組、沖壓件。與工研院合作開發VC Lid散熱提升50%，已通過AMD場域驗證。打入全球頂尖AI散熱供應鏈。IPM導線架2027Q1量產，超高密度Photo Couper導線架2026Q1量產。</p>
+<div style="color:#aaa;margin-bottom:10px;">AI散熱</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>AI散熱新星！VC Lid散熱提升50%，通過AMD驗證。IPM 2027Q1量產。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">185.0</div></div>
@@ -324,11 +312,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value pos">+1.8%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value pos">+40.5%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">1.3%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>本益比840極高，但散熱營收佔比已突破四成，AI散熱題材強勁。3月營收6.15億（Q1累計16.2億，年增19.9%）。</p></div>
-<div class="section"><h3>消息面</h3><p>AMD驗證、VC Lid散熱、AI散熱供應鏈、2026/2027新產品</p></div>
+<div class="section"><h3>判斷原因</h3><p>散熱營收佔比>四成，AI題材強。Q1 16.2億年增19.9%。</p></div>
+<div class="section"><h3>消息面</h3><p>AMD驗證、VC Lid</p></div>
 </div>
 </div>
 
@@ -338,10 +325,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">毅嘉</span></div>
 <div><span class="badge badge-mid">成長潛力</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">軟板/模組/車用電子</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">軟性印刷電路板（FPC）廠，產品：軟板、模組（Touch Module）、車用電子。四大引擎：車用電子與智慧座艙、光通訊/Datacom、馬來西亞新廠（5-6月出貨）、機器人與液冷模組。機器人已出貨軟板模組給美系/中系客戶，機構件Q3量產，無人機2026年貢獻。</p>
+<div style="color:#aaa;margin-bottom:10px;">軟板/車用</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>FPC軟板廠。四大引擎：車用、光通訊、馬來西亞新廠、機器人。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">77.7</div></div>
@@ -351,11 +338,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value pos">+8.3%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value neg">-28.6%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">10.5%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>Q1營收28.1億創同期新高！3月首度站上10億。馬來西亞新廠5至6月陸續出貨，四大引擎同步點火。</p></div>
-<div class="section"><h3>消息面</h3><p>馬來西亞新廠、四大引擎、機器人、無人機</p></div>
+<div class="section"><h3>判斷原因</h3><p>Q1營收28.1億創同期新高！馬來西亞5-6月出貨。</p></div>
+<div class="section"><h3>消息面</h3><p>馬來西亞新廠、機器人</p></div>
 </div>
 </div>
 
@@ -365,10 +351,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">台玻</span></div>
 <div><span class="badge badge-mid">可以考慮</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">玻璃/AI玻纖布</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">台灣最大玻璃廠，產品：建築玻璃、汽車玻璃、太陽能玻璃。2026年切入AI伺服器關鍵材料-電子級玻纖布，已躋身「AI玻纖布五雄」，切入輝達供應鏈。</p>
+<div style="color:#aaa;margin-bottom:10px;">玻璃/AI材料</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>台灣最大玻璃廠。切入AI玻纖布，已躋身「AI玻纖布五雄」，打入輝達供應鏈，訂單排至2027年。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">74.2</div></div>
@@ -378,11 +364,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value neg">-6.6%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value neg">+0.0%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-1.4%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>3月營收41.38億（月增69%、年增16%）反彈。2026年有望轉盈，受惠AI玻纖布漲價與產能倍增。</p></div>
-<div class="section"><h3>消息面</h3><p>AI玻纖布、輝達供應鏈、太陽能、2026轉盈</p></div>
+<div class="section"><h3>判斷原因</h3><p>3月營收41.38億（月增69%、年增16%）。2026有望轉盈。</p></div>
+<div class="section"><h3>消息面</h3><p>輝達供應鏈、AI玻纖布、2026轉盈</p></div>
 </div>
 </div>
 
@@ -392,10 +377,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div><span class="stock-name">台新新光金</span></div>
 <div><span class="badge badge-mid">成長潛力</span></div>
 </div>
-<div style="color:#aaa;margin-bottom:15px;">金融控股</div>
-<div class="section" style="margin-top:0;padding:15px;">
-<h3 style="font-size:1rem;">產業細項</h3>
-<p style="line-height:1.6;">金控旗下包含：台新銀行、台新人壽、台新投信。合併新光金後成為台灣前十大金控。</p>
+<div style="color:#aaa;margin-bottom:10px;">金控</div>
+<div class="section" style="margin-top:0;">
+<h3>產業細項</h3>
+<p>台新金+新光金合併，總資產8.58兆。前十大金控。</p>
 </div>
 <div class="metrics-grid">
 <div class="metric"><div class="metric-label">股價</div><div class="metric-value">24.3</div></div>
@@ -405,11 +390,10 @@ body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradien
 <div class="metric"><div class="metric-label">營收(億)</div><div class="metric-value">0.0</div></div>
 <div class="metric"><div class="metric-label">營收成長</div><div class="metric-value pos">+165.9%</div></div>
 <div class="metric"><div class="metric-label">盈餘成長</div><div class="metric-value pos">+155.6%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">10.5%</div></div>
 </div>
 <div class="judge-box">
-<div class="section"><h3>判斷原因</h3><p>防疫險結束，獲利大爆發。營收+166%，盈餘+156%。</p></div>
-<div class="section"><h3>消息面</h3><p>防疫險陰霾散、股息、新光金合併</p></div>
+<div class="section"><h3>判斷原因</h3><p>防疫險結束，營收+166%，盈餘+156%。</p></div>
+<div class="section"><h3>消息面</h3><p>合併效益、股息</p></div>
 </div>
 </div>
 
