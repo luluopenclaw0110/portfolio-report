@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>少爺持股投顧深度報告</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: #fff; min-height: 100vh; padding: 20px; }
+.header { background: linear-gradient(135deg, #e94560, #ffd700); padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 30px; }
+.stock-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; margin-bottom: 25px; }
+.stock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 15px; }
+.stock-code { font-size: 1.8rem; font-weight: bold; }
+.stock-name { font-size: 1.4rem; color: #ffd700; }
+.badge-good { background: #00d26a; }
+.badge-blue { background: #2196F3; }
+.badge-yellow { background: #FFC107; color: #000; }
+.badge-orange { background: #FF9800; }
+.badge-red { background: #e94560; }
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 15px 0; }
+.metric { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px; }
+.metric-label { font-size: 0.8rem; color: #aaa; }
+.metric-value { font-size: 1.2rem; font-weight: bold; margin-top: 5px; }
+.pos { color: #00d26a; }.neg { color: #e94560; }
+.section { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin-top: 15px; }
+.section h3 { color: #ffd700; margin-bottom: 10px; }
+.judge-box { border: 2px solid #00d26a; padding: 15px; border-radius: 10px; margin-top: 15px; }
+.warn-box { border: 2px solid #e94560; padding: 15px; border-radius: 10px; margin-top: 15px; }
+.footer { text-align: center; margin-top: 40px; color: #666; }
+</style>
+</head>
+<body>
+<div class="header">
+<h1>少爺持股投顧深度報告</h1>
+<p>18檔股票完整分析 | 2026年4月24日 專業版</p>
+</div>
+
+<div class="stock-card">
+<div class="stock-header">
+<div><span class="stock-code">2330</span></div>
+<div><span class="stock-name">台積電</span></div>
+<div><span class="badge badge-good">🟢 建議持有</span></div>
+</div>
+<div style="color:#aaa;margin-bottom:10px;">半導體</div>
+<div class="metrics-grid">
+<div class="metric"><div class="metric-label">股價</div><div class="metric-value">2,080</div></div>
+<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">28.3</div></div>
+<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">17.3</div></div>
+<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">73.60</div></div>
+<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+35.1%</div></div>
+<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value pos">+58.4%</div></div>
+<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">36.2%</div></div>
+</div>
+<div class="judge-box">
+<div class="section"><h3>📊 產業分析</h3><p>全球AI晶片需求爆發，台積電產能滿載。CoWoS、先進封裝訂單排隊。</p></div>
+<div class="section"><h3>📰 消息面</h3><p>法說會上修展望、CoWoS產能供不應求、資本支出560億</p></div>
+<div class="section"><h3>💡 投資建議</h3><p>體質佳，適合持有。評價合理，營收盈餘雙成長。</p></div>
+<div class="section"><h3>🔍 評估依據</h3><p>PE 28.3合理，Forward PE 17.3便宜，營收+35%、盈餘+58%、ROE 36.2%</p></div>
+</div>
+</div>
+
+<div class="footer">少爺持股投顧深度報告 | 更新時間: 2026-04-24</div>
+</body>
+</html>
