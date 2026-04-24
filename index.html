@@ -3,470 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>少爺持股深度分析報告</title>
+<title>台股每日推薦報告</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: #fff; min-height: 100vh; padding: 20px; }
-.header { background: linear-gradient(135deg, #e94560, #ffd700); padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 30px; }
-.stock-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; margin-bottom: 25px; }
-.stock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 15px; }
-.stock-code { font-size: 1.8rem; font-weight: bold; }
-.stock-name { font-size: 1.4rem; color: #ffd700; }
-.badge-good { background: #00d26a; }
-.badge-blue { background: #2196F3; }
-.badge-yellow { background: #FFC107; color: #000; }
-.badge-orange { background: #FF9800; }
-.badge-red { background: #e94560; }
-.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 15px 0; }
-.metric { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px; }
-.metric-label { font-size: 0.8rem; color: #aaa; }
-.metric-value { font-size: 1.2rem; font-weight: bold; margin-top: 5px; }
-.pos { color: #00d26a; }.neg { color: #e94560; }
-.section { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin-top: 15px; }
-.section h3 { color: #ffd700; margin-bottom: 10px; }
-.judge-box { border: 2px solid #00d26a; padding: 15px; border-radius: 10px; margin-top: 15px; }
-.warn-box { border: 2px solid #e94560; padding: 15px; border-radius: 10px; margin-top: 15px; }
-.footer { text-align: center; margin-top: 40px; color: #666; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #0D1171 0%, #1a237e 100%); color: #E6EDF3; padding: 20px; min-height: 100vh; }
+.container { max-width: 1400px; margin: 0 auto; }
+header { text-align: center; padding: 30px 0; background: rgba(22, 27, 34, 0.8); border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+.subtitle { color: #8B949E; font-size: 1.1rem; }
+.market { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+.market-card { background: rgba(22, 27, 34, 0.9); border: 1px solid #30363D; border-radius: 12px; padding: 20px; text-align: center; transition: transform 0.2s; }
+.market-card:hover { transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+.market-card h3 { color: #8B949E; font-size: 0.9rem; margin-bottom: 10px; }
+.market-card .price { font-size: 1.8rem; font-weight: bold; }
+.market-card .change { font-size: 1rem; margin-top: 5px; }
+.market-card.vix-low { border-color: #3FB950; }
+.market-card.vix-high { border-color: #F85149; }
+.signal-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; margin: 2px; }
+.signal-up { background: rgba(63, 185, 80, 0.2); color: #3FB950; }
+.signal-down { background: rgba(248, 81, 73, 0.2); color: #F85149; }
+.signal-neutral { background: rgba(210, 153, 34, 0.2); color: #D29922; }
+.top5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin: 30px 0; }
+@media (max-width: 1024px) { .top5 { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .top5 { grid-template-columns: repeat(2, 1fr); } }
+.top-card { background: linear-gradient(145deg, #161B22, #1f2937); border: 1px solid #30363D; border-radius: 12px; padding: 20px; text-align: center; position: relative; overflow: hidden; }
+.top-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #F85149, #D29922, #3FB950); }
+.top-card .rank { background: linear-gradient(135deg, #F85149, #D29922); color: white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-weight: bold; font-size: 0.9rem; }
+.top-card .name { font-size: 1.1rem; font-weight: bold; margin-bottom: 5px; }
+.top-card .code { color: #8B949E; font-size: 0.85rem; }
+.top-card .price { font-size: 1.6rem; margin: 10px 0; font-weight: bold; }
+.top-card .score { background: linear-gradient(135deg, #F85149, #D29922); color: white; border-radius: 20px; padding: 6px 16px; display: inline-block; font-weight: bold; font-size: 1rem; }
+table { width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(22, 27, 34, 0.9); border-radius: 12px; overflow: hidden; }
+th, td { padding: 12px 15px; text-align: left; }
+th { background: rgba(48, 54, 61, 0.8); color: #8B949E; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+tr { border-bottom: 1px solid #30363D; transition: background 0.2s; }
+tr:hover { background: rgba(48, 54, 61, 0.5); }
+tr:last-child { border-bottom: none; }
+.score-cell { font-weight: bold; padding: 6px 12px; border-radius: 8px; text-align: center; }
+.score-high { background: linear-gradient(135deg, #F85149, #D29922); color: white; }
+.score-mid { background: rgba(210, 153, 34, 0.3); color: #D29922; }
+.score-low { background: rgba(63, 185, 80, 0.2); color: #3FB950; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin: 1px; }
+.badge-up { background: rgba(248, 81, 73, 0.2); color: #F85149; }
+.badge-down { background: rgba(63, 185, 80, 0.2); color: #3FB950; }
+.badge-neutral { background: rgba(210, 153, 34, 0.2); color: #D29922; }
+.signals-cell { font-size: 0.8rem; line-height: 1.6; }
+footer { text-align: center; padding: 30px; color: #8B949E; font-size: 0.9rem; }
+.legend { background: rgba(22, 27, 34, 0.9); border-radius: 12px; padding: 20px; margin: 20px 0; }
+.legend h3 { margin-bottom: 10px; color: #E6EDF3; }
+.legend-item { display: flex; align-items: center; gap: 10px; margin: 5px 0; font-size: 0.9rem; }
+.buy-signal { color: #3FB950; font-weight: bold; }
+.sell-signal { color: #F85149; font-weight: bold; }
+/* 融資券樣式 */
+.margin-section { background: rgba(22, 27, 34, 0.9); border-radius: 12px; padding: 20px; margin: 20px 0; }
+.margin-section h3 { margin-bottom: 15px; color: #E6EDF3; display: flex; align-items: center; gap: 8px; }
+.margin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+.margin-card { background: rgba(48, 54, 61, 0.5); border-radius: 8px; padding: 15px; border: 1px solid #30363D; }
+.margin-card h4 { color: #58A6FF; margin-bottom: 10px; font-size: 1rem; }
+.margin-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #30363D; }
+.margin-row:last-child { border-bottom: none; }
+.margin-label { color: #8B949E; }
+.margin-value { font-weight: bold; }
+.margin-value.green { color: #3FB950; }
+.margin-value.red { color: #F85149; }
+.margin-value.orange { color: #D29922; }
+.trader-alert { background: rgba(248, 81, 73, 0.15); border: 1px solid #F85149; border-radius: 8px; padding: 10px; margin-top: 10px; }
+.trader-alert h5 { color: #F85149; margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
+.trader-item { display: flex; justify-content: space-between; padding: 3px 0; font-size: 0.85rem; }
+.trader-item.buy { color: #3FB950; }
+.trader-item.sell { color: #F85149; }
+.no-data { color: #8B949E; font-style: italic; }
 </style>
 </head>
 <body>
-<div class="header">
-<h1>少爺持股深度分析報告</h1>
-<p>18檔股票完整分析 | 2026年4月24日 專業版</p>
+<div class="container">
+<header>
+    <h1>📈 台股每日推薦報告</h1>
+    <p class="subtitle">技術分析 | 綜合評分 | 融資券 | 隔日沖監控 | 更新時間: 2026-04-24 23:43:02</p>
+</header>
+<div class="market">
+    <div class="market-card">
+        <h3>加權指數</h3>
+        <div class="price">38,932.40</div>
+        <div class="change" style="color: #F85149">+1,218.25 (+3.23%)</div></div>
+    <div class="market-card vix-low">
+        <h3>VIX</h3>
+        <div class="price">18.69</div>
+        <div class="change" style="color: #3FB950">低風險</div></div></div>
+<div class="legend">
+<h3>📊 評分說明（分數越高 = 買進訊號越強）</h3>
+<div class="legend-item"><span class="buy-signal">✅</span> MA5/MA20 站上均線 (+3/+2)</div>
+<div class="legend-item"><span class="buy-signal">🔥</span> RSI < 30 超賣 (+3) / KD 低檔黃金交叉 (+3)</div>
+<div class="legend-item"><span class="buy-signal">✅</span> MACD 多頭 (+2) / 成交量放大 (+2)</div>
+<div class="legend-item"><span class="buy-signal">✅</span> VIX < 20 大盤低風險環境 (+2)</div>
+<div class="legend-item"><span class="sell-signal">⚠️</span> RSI > 70 超買 / KD 高檔死亡交叉</div>
+<div class="legend-item"><span class="sell-signal">⚠️</span> 隔日沖分點大買（需注意）</div>
+</div>
+<h2 style="text-align:center; margin: 30px 0;">🏅 TOP 5 推薦</h2><div class="top5">
+    <div class="top-card">
+        <div class="rank">1</div>
+        <div class="name">台積電</div>
+        <div class="code">2330</div>
+        <div class="price" style="color: #F85149">2,185</div>
+        <div style="color: #F85149">+105.00 (+5.0%)</div>
+        <div class="score">8 分</div>
+    </div>
+    <div class="top-card">
+        <div class="rank">2</div>
+        <div class="name">聯發科</div>
+        <div class="code">2454</div>
+        <div class="price" style="color: #F85149">2,435</div>
+        <div style="color: #F85149">+220.00 (+9.9%)</div>
+        <div class="score">8 分</div>
+    </div>
+    <div class="top-card">
+        <div class="rank">3</div>
+        <div class="name">世紀</div>
+        <div class="code">2474</div>
+        <div class="price" style="color: #3FB950">224</div>
+        <div style="color: #3FB950">-8.00 (-3.5%)</div>
+        <div class="score">8 分</div>
+    </div>
+    <div class="top-card">
+        <div class="rank">4</div>
+        <div class="name">鴻海</div>
+        <div class="code">2317</div>
+        <div class="price" style="color: #3FB950">222</div>
+        <div style="color: #3FB950">-3.50 (-1.6%)</div>
+        <div class="score">7 分</div>
+    </div>
+    <div class="top-card">
+        <div class="rank">5</div>
+        <div class="name">聯米</div>
+        <div class="code">2377</div>
+        <div class="price" style="color: #3FB950">95</div>
+        <div style="color: #3FB950">-2.90 (-3.0%)</div>
+        <div class="score">5 分</div>
+    </div></div><h2 style="margin: 30px 0;">📋 完整排名</h2><table><thead><tr><th>#</th><th>代碼</th><th>名稱</th><th>現價</th><th>漲跌</th><th>總分</th><th>關鍵信號</th></tr></thead><tbody><tr>
+    <td><strong>1</strong></td>
+    <td>2330</td>
+    <td><strong>台積電</strong></td>
+    <td style="color: #F85149; font-weight: bold;">2,185</td>
+    <td style="color: #F85149;">+105.00 (+5.0%)</td>
+    <td><span class="score-cell score-high">8</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-up">MA5:2078</span> <span class="badge badge-up">MA20:1963</span> <span class="badge badge-neutral">RSI:86.4</span> </td>
+</tr><tr>
+    <td><strong>2</strong></td>
+    <td>2454</td>
+    <td><strong>聯發科</strong></td>
+    <td style="color: #F85149; font-weight: bold;">2,435</td>
+    <td style="color: #F85149;">+220.00 (+9.9%)</td>
+    <td><span class="score-cell score-high">8</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-up">MA5:2187</span> <span class="badge badge-up">MA20:1760</span> <span class="badge badge-neutral">RSI:90.8</span> </td>
+</tr><tr>
+    <td><strong>3</strong></td>
+    <td>2474</td>
+    <td><strong>世紀</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">224</td>
+    <td style="color: #3FB950;">-8.00 (-3.5%)</td>
+    <td><span class="score-cell score-high">8</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-up">MA5:216</span> <span class="badge badge-up">MA20:200</span> <span class="badge badge-neutral">RSI:71.7</span> </td>
+</tr><tr>
+    <td><strong>4</strong></td>
+    <td>2317</td>
+    <td><strong>鴻海</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">222</td>
+    <td style="color: #3FB950;">-3.50 (-1.6%)</td>
+    <td><span class="score-cell score-mid">7</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-up">MA5:217</span> <span class="badge badge-up">MA20:204</span> <span class="badge badge-neutral">RSI:82.0</span> </td>
+</tr><tr>
+    <td><strong>5</strong></td>
+    <td>2377</td>
+    <td><strong>聯米</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">95</td>
+    <td style="color: #3FB950;">-2.90 (-3.0%)</td>
+    <td><span class="score-cell score-mid">5</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:95</span> <span class="badge badge-up">MA20:91</span> <span class="badge badge-down">RSI:68.7</span> </td>
+</tr><tr>
+    <td><strong>6</strong></td>
+    <td>2603</td>
+    <td><strong>長榮</strong></td>
+    <td style="color: #F85149; font-weight: bold;">202</td>
+    <td style="color: #F85149;">+0.50 (+0.2%)</td>
+    <td><span class="score-cell score-mid">5</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-up">MA5:201</span> <span class="badge badge-neutral">MA20:202</span> <span class="badge badge-down">RSI:47.6</span> </td>
+</tr><tr>
+    <td><strong>7</strong></td>
+    <td>3042</td>
+    <td><strong>創見</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">144</td>
+    <td style="color: #3FB950;">-8.50 (-5.6%)</td>
+    <td><span class="score-cell score-mid">5</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:160</span> <span class="badge badge-up">MA20:122</span> <span class="badge badge-neutral">RSI:75.4</span> </td>
+</tr><tr>
+    <td><strong>8</strong></td>
+    <td>2313</td>
+    <td><strong>華通</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">214</td>
+    <td style="color: #3FB950;">-8.00 (-3.6%)</td>
+    <td><span class="score-cell score-mid">5</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:238</span> <span class="badge badge-neutral">MA20:259</span> <span class="badge badge-down">RSI:31.3</span> </td>
+</tr><tr>
+    <td><strong>9</strong></td>
+    <td>2451</td>
+    <td><strong>研華</strong></td>
+    <td style="color: #F85149; font-weight: bold;">252</td>
+    <td style="color: #F85149;">+1.00 (+0.4%)</td>
+    <td><span class="score-cell score-low">4</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:258</span> <span class="badge badge-up">MA20:243</span> <span class="badge badge-down">RSI:60.8</span> </td>
+</tr><tr>
+    <td><strong>10</strong></td>
+    <td>2303</td>
+    <td><strong>聯電</strong></td>
+    <td style="color: #F85149; font-weight: bold;">74</td>
+    <td style="color: #F85149;">+0.90 (+1.2%)</td>
+    <td><span class="score-cell score-low">4</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:76</span> <span class="badge badge-up">MA20:64</span> <span class="badge badge-neutral">RSI:77.9</span> </td>
+</tr><tr>
+    <td><strong>11</strong></td>
+    <td>2882</td>
+    <td><strong>國泰金</strong></td>
+    <td style="color: #F85149; font-weight: bold;">75</td>
+    <td style="color: #F85149;">+0.10 (+0.1%)</td>
+    <td><span class="score-cell score-low">4</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:75</span> <span class="badge badge-up">MA20:73</span> <span class="badge badge-down">RSI:66.0</span> </td>
+</tr><tr>
+    <td><strong>12</strong></td>
+    <td>2881</td>
+    <td><strong>元大金</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">88</td>
+    <td style="color: #3FB950;">-0.50 (-0.6%)</td>
+    <td><span class="score-cell score-low">4</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:88</span> <span class="badge badge-up">MA20:88</span> <span class="badge badge-down">RSI:50.0</span> </td>
+</tr><tr>
+    <td><strong>13</strong></td>
+    <td>2887</td>
+    <td><strong>台新金</strong></td>
+    <td style="color: #F85149; font-weight: bold;">24</td>
+    <td style="color: #F85149;">+0.25 (+1.1%)</td>
+    <td><span class="score-cell score-low">3</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:24</span> <span class="badge badge-neutral">MA20:24</span> <span class="badge badge-down">RSI:43.8</span> </td>
+</tr><tr>
+    <td><strong>14</strong></td>
+    <td>2002</td>
+    <td><strong>中鋼</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">19</td>
+    <td style="color: #3FB950;">-0.15 (-0.8%)</td>
+    <td><span class="score-cell score-low">3</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:19</span> <span class="badge badge-neutral">MA20:20</span> <span class="badge badge-down">RSI:41.9</span> </td>
+</tr><tr>
+    <td><strong>15</strong></td>
+    <td>2891</td>
+    <td><strong>中信金</strong></td>
+    <td style="color: #F85149; font-weight: bold;">53</td>
+    <td style="color: #F85149;">+0.20 (+0.4%)</td>
+    <td><span class="score-cell score-low">2</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:53</span> <span class="badge badge-neutral">MA20:53</span> <span class="badge badge-down">RSI:40.2</span> </td>
+</tr><tr>
+    <td><strong>16</strong></td>
+    <td>1216</td>
+    <td><strong>統一</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">72</td>
+    <td style="color: #3FB950;">-0.40 (-0.6%)</td>
+    <td><span class="score-cell score-low">2</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:72</span> <span class="badge badge-neutral">MA20:72</span> <span class="badge badge-down">RSI:42.1</span> </td>
+</tr><tr>
+    <td><strong>17</strong></td>
+    <td>1702</td>
+    <td><strong>南僑</strong></td>
+    <td style="color: #F85149; font-weight: bold;">36</td>
+    <td style="color: #F85149;">+0.10 (+0.3%)</td>
+    <td><span class="score-cell score-low">2</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:36</span> <span class="badge badge-neutral">MA20:36</span> <span class="badge badge-down">RSI:42.6</span> </td>
+</tr><tr>
+    <td><strong>18</strong></td>
+    <td>2201</td>
+    <td><strong>裕融</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">27</td>
+    <td style="color: #3FB950;">-0.35 (-1.3%)</td>
+    <td><span class="score-cell score-low">2</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:27</span> <span class="badge badge-neutral">MA20:27</span> <span class="badge badge-down">RSI:49.3</span> </td>
+</tr><tr>
+    <td><strong>19</strong></td>
+    <td>2707</td>
+    <td><strong>晶華</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">174</td>
+    <td style="color: #3FB950;">-1.00 (-0.6%)</td>
+    <td><span class="score-cell score-low">2</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:177</span> <span class="badge badge-neutral">MA20:178</span> <span class="badge badge-down">RSI:36.4</span> </td>
+</tr><tr>
+    <td><strong>20</strong></td>
+    <td>2727</td>
+    <td><strong>王品</strong></td>
+    <td style="color: #3FB950; font-weight: bold;">224</td>
+    <td style="color: #3FB950;">-1.00 (-0.4%)</td>
+    <td><span class="score-cell score-low">2</span></td>
+    <td class="signals-cell"><span class="badge badge-up">VIX:18.7</span> <span class="badge badge-neutral">MA5:225</span> <span class="badge badge-neutral">MA20:227</span> <span class="badge badge-down">RSI:33.3</span> </td>
+</tr></tbody></table>
+<footer>
+    <p>📈 台股每日推薦報告 | 資料來源: Yahoo Finance + GoodInfo | 每小時更新</p>
+    <p>本報告僅供參考，不构成投資建議。分數高不代表一定漲，請注意風險。</p>
+    <p>⚠️ 隔日沖分點：凱基台北/松山、元大總公司、美林、港商野村、摩根大通、華南永昌、永豐金-市政</p>
+</footer>
 </div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2330</span></div>
-<div><span class="stock-name">台積電</span></div>
-<div><span class="badge badge-good">🟢 建議持有</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">半導體</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">2,080</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">28.3</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">17.3</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">73.60</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+35.1%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value pos">+58.4%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">36.2%</div></div>
-</div>
-<div class="judge-box">
-<div class="section"><h3>📊 產業分析</h3><p>全球AI晶片需求爆發，台積電產能滿載。CoWoS、先進封裝訂單排隊。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>法說會上修展望、CoWoS產能供不應求、資本支出560億</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>體質佳，適合持有。評價合理，營收盈餘雙成長。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>PE 28.3合理，Forward PE 17.3便宜，營收+35%、盈餘+58%、ROE 36.2%</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">6667</span></div>
-<div><span class="stock-name">信紘科</span></div>
-<div><span class="badge badge-good">🟢 建議持有</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">半導體廠務</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">270.5</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">19.8</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">13.6</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">13.68</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+61.1%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value pos">+29.6%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">28.2%</div></div>
-</div>
-<div class="judge-box">
-<div class="section"><h3>📊 產業分析</h3><p>台積電擴廠，廠務需求強勁。化學供應系統是關鍵供應商。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>台積電海內外大擴廠，先進封裝需求</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>體質佳，適合持有。本益比低，成長動能強。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>PE 19.8低，營收+61%、盈餘+30%，ROE 28.2%</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2317</span></div>
-<div><span class="stock-name">鴻海</span></div>
-<div><span class="badge badge-good">🟢 建議持有</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">電子代工</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">225</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">16.8</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">11.2</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">13.39</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+22.3%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value neg">-0.3%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">11.3%</div></div>
-</div>
-<div class="judge-box">
-<div class="section"><h3>📊 產業分析</h3><p>AI伺服器佈局有成，營收成長。消費電子仍平淡。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>AI伺服器市佔率目標40%、輝達GB200供應鏈</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>體質佳，適合持有。本益比極低，營收成長強勁。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>PE 16.8極低，Forward PE 11.2便宜，營收+22%強勁</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2313</span></div>
-<div><span class="stock-name">華通</span></div>
-<div><span class="badge badge-blue">🔵 成長潛力</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">PCB</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">222.5</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">40.6</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">24.6</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">5.48</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+6.0%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value pos">+36.0%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">14.2%</div></div>
-</div>
-<div class="judge-box">
-<div class="section"><h3>📊 產業分析</h3><p>PCB受惠AI伺服器，Low-Dk低損耗板需求增。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>低軌衛星、SpaceX供應鏈、泰國新廠</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>成長型，值得關注。盈餘成長佳。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>PE 40.6偏高但盈餘+36%成長佳，PCB受惠AI伺服器</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">5443</span></div>
-<div><span class="stock-name">均豪</span></div>
-<div><span class="badge badge-yellow">🟡 觀望</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">半導體設備</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">111</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">43.5</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">N/A</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">2.55</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value neg">-17.3%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value pos">+225.7%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">6.0%</div></div>
-</div>
-<div class="judge-box">
-<div class="section"><h3>📊 產業分析</h3><p>面板、半導體設備廠。FOPLP先進封裝題材。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>FOPLP面板級封裝、CoWoS設備需求</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>觀望。營收衰退令人擔憂，需持續觀察盈餘成長能否持續。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>營收-17.3%衰退令人擔憂，但盈餘+225.7%大增，需持續觀察</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">1503</span></div>
-<div><span class="stock-name">士電</span></div>
-<div><span class="badge badge-yellow">🟡 觀望</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">重電/AI</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">192</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">30.7</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">14.0</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">6.26</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+8.6%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value neg">-3.3%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">8.9%</div></div>
-</div>
-<div class="judge-box">
-<div class="section"><h3>📊 產業分析</h3><p>重電，AI散熱需求。變壓器訂單穩定。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>台電強韌電網計畫、變壓器出貨，AI散熱</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>觀望。營收成長溫和，盈餘小幅衰退。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>PE 30.7稍高，營收+8.6%溫和，盈餘-3.3%小幅衰退</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">1605</span></div>
-<div><span class="stock-name">華新</span></div>
-<div><span class="badge badge-red">🔴 風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">不鏽鋼</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">30.35</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">40.5</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">36.6</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">0.75</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value neg">-10.3%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value ">N/A</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">1.4%</div></div>
-</div>
-<div class="warn-box">
-<div class="section"><h3>📊 產業分析</h3><p>不鏽鋼景氣平淡。中國競爭壓力。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>碳中和政策、綠能鋼材</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>建議避開。營收衰退，盈餘低，ROE僅1.4%。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>營收-10.3%衰退，ROE僅1.4%，中國不鏽鋼競爭壓力大</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">1717</span></div>
-<div><span class="stock-name">長興</span></div>
-<div><span class="badge badge-red">🔴 風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">化工</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">78.8</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">55.9</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">28.4</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">1.41</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value neg">-10.2%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value neg">-21.1%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">6.0%</div></div>
-</div>
-<div class="warn-box">
-<div class="section"><h3>📊 產業分析</h3><p>化工原料價格波動。合成樹酯接著劑為主。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>原料成本壓力、環保膠開發</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>建議避開。盈餘大幅衰退，PE過高。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>盈餘-21%衰退，PE 55.9過高，化工景氣差</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">6613</span></div>
-<div><span class="stock-name">朋億</span></div>
-<div><span class="badge badge-orange">🟠 留意</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">半導體設備</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">240</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">18.0</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">N/A</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">13.31</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value neg">-11.3%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value neg">-41.3%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">19.2%</div></div>
-</div>
-<div class="warn-box">
-<div class="section"><h3>📊 產業分析</h3><p>半導體設備廠。供應平潭、力機等大廠。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>半導體景氣回升，中國內需</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>留意。盈餘大幅衰退，需等景氣回溫。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>PE 18.0低但盈餘-41%大幅衰退，需等半導體景氣回溫</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">4716</span></div>
-<div><span class="stock-name">大立</span></div>
-<div><span class="badge badge-red">🔴 風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">光學元件</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">15.3</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">虧損</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">N/A</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">-0.87</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value neg">-7.7%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value ">N/A</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-7.2%</div></div>
-</div>
-<div class="warn-box">
-<div class="section"><h3>📊 產業分析</h3><p>小型光學元件廠。訂單不穩定。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>光學鏡頭訂單</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>建議避開。本業虧損，基本面倒退。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>本業虧損，ROE -7.2%，基本面倒退</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2486</span></div>
-<div><span class="stock-name">一詮</span></div>
-<div><span class="badge badge-orange">🟠 留意</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">LED/導線架</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">222</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">1009</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">44.8</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">0.22</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+1.8%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value pos">+40.5%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">1.3%</div></div>
-</div>
-<div class="warn-box">
-<div class="section"><h3>📊 產業分析</h3><p>LED導線架、Discrete元件。營收成長放緩。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>LED照明需求、Mini LED背光</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>留意。PE極高，評價過貴。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>PE 1009極高，評價過貴，營收成長僅+1.8%</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2402</span></div>
-<div><span class="stock-name">毅嘉</span></div>
-<div><span class="badge badge-orange">🟠 留意</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">軟板</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">71.6</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">30.9</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">24.8</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">2.32</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+8.3%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value neg">-28.6%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">10.5%</div></div>
-</div>
-<div class="warn-box">
-<div class="section"><h3>📊 產業分析</h3><p>軟板廠。汽車、醫療應用。中國蘇州廠競爭。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>汽車ADAS板、醫療認證</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>留意。盈餘大幅衰退。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>盈餘-28.6%大幅衰退，雖營收+8.3%但盈餘下滑令人擔憂</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">1802</span></div>
-<div><span class="stock-name">台玻</span></div>
-<div><span class="badge badge-yellow">🟡 觀望</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">玻璃</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">66.2</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">虧損</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">19.7</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">-0.20</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value neg">-6.6%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value ">N/A</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-1.4%</div></div>
-</div>
-<div class="judge-box">
-<div class="section"><h3>📊 產業分析</h3><p>玻璃纖維布，切入AI玻纖布題材。仍虧損中。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>輝達AI供應鏈傳言、玻纖布</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>觀望。本業仍虧損，但有轉盈可能性。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>本業仍虧損，但Forward PE 19.7合理，有轉盈可能性</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2887</span></div>
-<div><span class="stock-name">台新新光金</span></div>
-<div><span class="badge badge-good">🟢 建議持有</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">金控</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">23.7</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">12.4</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">10.1</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">1.91</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+165.9%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value pos">+155.6%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">10.5%</div></div>
-</div>
-<div class="judge-box">
-<div class="section"><h3>📊 產業分析</h3><p>金控合併效益。銀行、保險收益穩健。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>信用卡業務成長、併購效益顯現</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>體質佳，適合持有。評價便宜，基本面強勁。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>PE 12.4極低，營收+166%、盈餘+156%，金控合併效益顯現</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">3008</span></div>
-<div><span class="stock-name">大立光</span></div>
-<div><span class="badge badge-good">🟢 建議持有</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">光學鏡頭</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">2,485</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">15.8</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">12.7</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">157.17</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+6.6%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value neg">-2.3%</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">11.5%</div></div>
-</div>
-<div class="judge-box">
-<div class="section"><h3>📊 產業分析</h3><p>手機鏡頭龍頭。8P/9P專利壁壘。車用、AR/VR新動能。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>iPhone 17鏡頭升級、潛望式鏡頭</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>體質佳，適合持有。本益比低，龍頭地位穩固。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>PE 15.8低，Forward PE 12.7便宜，光學鏡頭龍頭專利壁壘</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">3714</span></div>
-<div><span class="stock-name">富采</span></div>
-<div><span class="badge badge-red">🔴 風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">LED</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">70</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">虧損</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">7000</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">-3.69</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value neg">-5.4%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value ">N/A</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-5.9%</div></div>
-</div>
-<div class="warn-box">
-<div class="section"><h3>📊 產業分析</h3><p>LED磊晶、封裝。Mini LED、Micro LED技術領先。仍虧損。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>Micro LED大尺寸顯示器</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>建議避開。LED本業虧損，景氣低迷。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>LED本業虧損，景氣低迷，Micro LED還需時間</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2426</span></div>
-<div><span class="stock-name">鼎元</span></div>
-<div><span class="badge badge-red">🔴 風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">光電/感測</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">48.7</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">虧損</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">39.9</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">-0.25</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value neg">-7.6%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value ">N/A</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-2.0%</div></div>
-</div>
-<div class="warn-box">
-<div class="section"><h3>📊 產業分析</h3><p>光電元件。光通訊、感測應用。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>光纖基礎建設</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>建議避開。持續虧損，營收衰退。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>持續虧損，營收-7.6%衰退，光纖景氣平淡</p></div>
-</div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">6168</span></div>
-<div><span class="stock-name">宏齊</span></div>
-<div><span class="badge badge-orange">🟠 留意</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">LED封裝</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">25.7</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">514</div></div>
-<div class="metric"><div class="metric-label">預估本益比</div><div class="metric-value">10.9</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">0.05</div></div>
-<div class="metric"><div class="metric-label">營收</div><div class="metric-value pos">+4.6%</div></div>
-<div class="metric"><div class="metric-label">盈餘</div><div class="metric-value ">N/A</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-0.1%</div></div>
-</div>
-<div class="warn-box">
-<div class="section"><h3>📊 產業分析</h3><p>LED封裝、顯示屏。薄型化顯示技術。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>大型顯示屏標案</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>留意。PE極高，盈餘微薄。</p></div>
-<div class="section"><h3>🔍 評估依據</h3><p>PE 514極高，盈餘僅0.05元，LED封裝景氣平淡</p></div>
-</div>
-</div>
-
-<div class="footer">⚠️ 免责声明：以上资料仅供参考，不构成投资建议。 | 資料更新：2026年4月24日</div>
 </body>
 </html>
