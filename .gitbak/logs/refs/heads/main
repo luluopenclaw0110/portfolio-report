@@ -1,0 +1,7 @@
+0000000000000000000000000000000000000000 ae9c5739d3ca7317c554541a806abf0d5e78fd1f luluopenclaw0110 <luluopenclaw0110@gmail.com> 1777045408 +0800	clone: from https://github.com/luluopenclaw0110/portfolio-report.git
+ae9c5739d3ca7317c554541a806abf0d5e78fd1f d3a2a1fd17d4b66d64fabb10128416ead39468c7 luluopenclaw0110 <luluopenclaw0110@gmail.com> 1777045416 +0800	commit: feat: 更新融資券與隔日沖監控功能
+d3a2a1fd17d4b66d64fabb10128416ead39468c7 aaaa029dc4df47cd40232d50801c0441cbbe400f luluopenclaw0110 <luluopenclaw0110@gmail.com> 1777045827 +0800	commit: fix: 更新融資券顯示（有UI但需優化解析）
+aaaa029dc4df47cd40232d50801c0441cbbe400f 35ffcf591695d1a4d8f0ce33ba876b9f6a98eb65 luluopenclaw0110 <luluopenclaw0110@gmail.com> 1777045911 +0800	commit: chore: 暫時關閉融資券功能（解析優化中）
+35ffcf591695d1a4d8f0ce33ba876b9f6a98eb65 2929d1eb3ed765c8a0fcd5d3fd3cdda2ec892ba5 luluopenclaw0110 <luluopenclaw0110@gmail.com> 1777046816 +0800	commit: feat: 新增 TWSE 市場整體信用交易統計（融資餘額、融券餘額、券資比）
+2929d1eb3ed765c8a0fcd5d3fd3cdda2ec892ba5 02c42028ce4016e7a8d3e15b3ef51ce9c9bfb571 luluopenclaw0110 <luluopenclaw0110@gmail.com> 1777047646 +0800	commit: recover: 少爺持股投顧深度報告（舊版 18 檔股票）
+02c42028ce4016e7a8d3e15b3ef51ce9c9bfb571 354821750f47f123acaa21de1a0bbee50942242f luluopenclaw0110 <luluopenclaw0110@gmail.com> 1777047738 +0800	commit: recover: 少爺持股深度分析報告（正確版本）
