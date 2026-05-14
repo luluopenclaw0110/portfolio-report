@@ -5,454 +5,199 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>少爺持股深度分析報告</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Microsoft JhengHei', sans-serif; background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: #fff; min-height: 100vh; padding: 20px; }
-.header { background: linear-gradient(135deg, #e94560, #ffd700); padding: 30px; border-radius: 15px; text-align: center; margin-bottom: 30px; }
-.stock-card { background: rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; margin-bottom: 25px; }
-.stock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 15px; }
-.stock-code { font-size: 1.8rem; font-weight: bold; }
-.stock-name { font-size: 1.4rem; color: #ffd700; }
-.badge-good { background: #00d26a; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; }
-.badge-blue { background: #2196F3; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; }
-.badge-yellow { background: #FFC107; color: #000; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; }
-.badge-orange { background: #FF9800; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; }
-.badge-red { background: #e94560; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; }
-.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 15px 0; }
-.metric { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px; }
-.metric-label { font-size: 0.8rem; color: #aaa; }
-.metric-value { font-size: 1.2rem; font-weight: bold; margin-top: 5px; }
-.pos { color: #00d26a; }
-.neg { color: #e94560; }
-.section { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin-top: 15px; }
-.section h3 { color: #ffd700; margin-bottom: 10px; }
-.judge-box { border: 2px solid #00d26a; padding: 15px; border-radius: 10px; margin-top: 15px; }
-.warn-box { border: 2px solid #e94560; padding: 15px; border-radius: 10px; margin-top: 15px; }
-.footer { text-align: center; margin-top: 40px; color: #666; }
+body { font-family: 'Segoe UI', sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #1a1a2e; color: #eee; }
+h1 { color: #00d4ff; border-bottom: 2px solid #00d4ff; padding-bottom: 10px; }
+h2 { color: #88aaff; margin-top: 30px; }
+table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+th { background: #16213e; padding: 12px; text-align: left; border-bottom: 2px solid #00d4ff; }
+td { padding: 10px; border-bottom: 1px solid #333; }
+tr:hover { background: #1f3460; }
+.price { color: #fbbf24; font-weight: bold; }
+.pe { color: #a78bfa; }
+.positive { color: #4ade80; } .negative { color: #f87171; }
+.summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
+.card { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 15px; }
+.card h3 { color: #6dd5ff; margin-bottom: 10px; }
+.card p { color: #aaa; line-height: 1.6; }
+.updated { color: #666; font-size: 0.85rem; text-align: right; margin-top: 30px; }
 </style>
 </head>
 <body>
-<div class="header">
-<h1>少爺持股深度分析報告</h1>
-<p>18檔股票完整分析 | 2026-05-13 專業版</p>
+<h1>📊 少爺持股深度分析報告</h1>
+<p>更新日期: 2026-05-14 | 資料來源: yfinance + TWSE (法人資料: 2026/05/13)</p>
+
+<div class="summary">
+<div class="card"><h3>🟢 建議持有 (9檔)</h3><p>2330台積電, 6667信紘科, 2317鴻海, 2313華通, 1503士電, 6613朋億, 2402毅嘉, 2887台新新金, 3008大立光</p></div>
+<div class="card"><h3>🟠 留意 (4檔)</h3><p>5443均豪, 1605華新, 1717長興, 2486一詮</p></div>
+<div class="card"><h3>🔴 風險 (5檔)</h3><p>4716大立, 1802台玻, 3714富采, 2426鼎元, 6168宏齊</p></div>
 </div>
 
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2330</span></div>
-<div><span class="stock-name">台積電</span></div>
-<div><span class="badge-good">🟢建議持有</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">半導體</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$2220.00</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">30.20</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">73.51</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">36.21%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">35.1%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>半導體先進製程領導者，AI需求持續支撐，先進封裝產能擴張中。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🟢建議持有 - 依據本益比30.20倍、ROE36.21%、營收成長35.1%等數據評估，體質佳值得持有。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>半導體先進製程領導者，AI需求持續支撐，先進封裝產能擴張中。</p>
-<h4>風險</h4><p>地緣政治風險，資本支出龐大。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">6667</span></div>
-<div><span class="stock-name">信紘科</span></div>
-<div><span class="badge-good">🟢建議持有</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">半導體設備</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$252.50</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">18.48</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">13.66</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">28.25%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">61.1%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>半導體設備需求熱絡，廠務工程訂單暢旺。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🟢建議持有 - 依據本益比18.48倍、ROE28.25%、營收成長61.1%等數據評估，體質佳值得持有。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>半導體設備需求熱絡，廠務工程訂單暢旺。</p>
-<h4>風險</h4><p>客戶集中度高，景氣循環風險。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2317</span></div>
-<div><span class="stock-name">鴻海</span></div>
-<div><span class="badge-good">🟢建議持有</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">電子代工</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$251.00</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">18.73</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">13.40</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">11.25%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">22.3%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>AI伺服器組裝龍頭，GB200供應鏈核心，營收逐季成長。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🟢建議持有 - 依據本益比18.73倍、ROE11.25%、營收成長22.3%等數據評估，體質佳值得持有。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>AI伺服器組裝龍頭，GB200供應鏈核心，營收逐季成長。</p>
-<h4>風險</h4><p>中國營收占比高，貿易戰風險。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2313</span></div>
-<div><span class="stock-name">華新科</span></div>
-<div><span class="badge-blue">🔵成長潛力</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">被動元件</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$237.00</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">43.17</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">5.49</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">14.99%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">16.8%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>被動元件景氣復甦中，車用占比持續提升。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔵成長潛力 - 依據本益比43.17倍、ROE14.99%、營收成長16.8%等數據評估，成長動能強。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>被動元件景氣復甦中，車用占比持續提升。</p>
-<h4>風險</h4><p>景氣循環波動大。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">5443</span></div>
-<div><span class="stock-name">均豪</span></div>
-<div><span class="badge-blue">🔵成長潛力</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">半導體設備</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$125.50</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">49.60</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">2.53</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">5.49%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">23.6%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>半導體設備廠，受惠先進封裝趨勢。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔵成長潛力 - 依據本益比49.60倍、ROE5.49%、營收成長23.6%等數據評估，成長動能強。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>半導體設備廠，受惠先進封裝趨勢。</p>
-<h4>風險</h4><p>景氣循環影響資本支出。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">1503</span></div>
-<div><span class="stock-name">士電</span></div>
-<div><span class="badge-blue">🔵成長潛力</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">重電</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$201.50</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">32.19</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">6.26</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">8.95%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">8.6%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>重電設備需求旺，綠能建設帶動營收。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔵成長潛力 - 依據本益比32.19倍、ROE8.95%、營收成長8.6%等數據評估，成長動能強。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>重電設備需求旺，綠能建設帶動營收。</p>
-<h4>風險</h4><p>電價政策影響。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">1605</span></div>
-<div><span class="stock-name">華新</span></div>
-<div><span class="badge-orange">🟠留意</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">電線電纜</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$35.20</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">46.93</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">0.75</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">3.25%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">-8.4%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>電線電纜景氣穩健，銅價支撐營收。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🟠留意 - 依據本益比46.93倍、ROE3.25%、營收成長-8.4%等數據評估，警訊浮現。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>電線電纜景氣穩健，銅價支撐營收。</p>
-<h4>風險</h4><p>原物料價格波動。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">1717</span></div>
-<div><span class="stock-name">長興</span></div>
-<div><span class="badge-red">🔴風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">化工</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$80.40</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">57.02</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">1.41</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">5.99%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">-10.2%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>化工材料需求放緩，營收動能待觀察。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔴風險 - 依據本益比57.02倍、ROE5.99%、營收成長-10.2%等數據評估，基本面待觀察。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>化工材料需求放緩，營收動能待觀察。</p>
-<h4>風險</h4><p>景氣放緩影響需求。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">6613</span></div>
-<div><span class="stock-name">朋億</span></div>
-<div><span class="badge-blue">🔵成長潛力</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">半導體設備</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$237.50</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">17.86</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">13.30</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">19.20%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">-11.3%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>半導體設備廠訂單強勁，營收成長。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔵成長潛力 - 依據本益比17.86倍、ROE19.20%、營收成長-11.3%等數據評估，成長動能強。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>半導體設備廠訂單強勁，營收成長。</p>
-<h4>風險</h4><p>客戶集中度風險。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">4716</span></div>
-<div><span class="stock-name">大立</span></div>
-<div><span class="badge-red">🔴風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">光學</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$15.40</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">N/A</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">-0.87</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-2.85%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">-1.7%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>光學元件景氣不明，營運承壓。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔴風險 - 依據本益比N/A倍、ROE-2.85%、營收成長-1.7%等數據評估，基本面待觀察。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>光學元件景氣不明，營運承壓。</p>
-<h4>風險</h4><p>產業競爭激烈。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2486</span></div>
-<div><span class="stock-name">卜蜂</span></div>
-<div><span class="badge-red">🔴風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">食品</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$255.00</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">1159.09</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">0.22</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">1.29%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">1.8%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>食品業供需穩定，成本控制關鍵。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔴風險 - 依據本益比1159.09倍、ROE1.29%、營收成長1.8%等數據評估，基本面待觀察。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>食品業供需穩定，成本控制關鍵。</p>
-<h4>風險</h4><p>原物料價格波動。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2402</span></div>
-<div><span class="stock-name">毅嘉</span></div>
-<div><span class="badge-blue">🔵成長潛力</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">連接器</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$68.00</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">29.31</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">2.32</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">10.47%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">8.3%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>連接器需求回溫，車用產品放量中。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔵成長潛力 - 依據本益比29.31倍、ROE10.47%、營收成長8.3%等數據評估，成長動能強。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>連接器需求回溫，車用產品放量中。</p>
-<h4>風險</h4><p>終端需求不確定性。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">1802</span></div>
-<div><span class="stock-name">台玻</span></div>
-<div><span class="badge-red">🔴風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">玻璃</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$68.00</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">N/A</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">-0.20</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-1.39%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">-6.6%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>玻璃產業景氣偏弱，營收下滑。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔴風險 - 依據本益比N/A倍、ROE-1.39%、營收成長-6.6%等數據評估，基本面待觀察。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>玻璃產業景氣偏弱，營收下滑。</p>
-<h4>風險</h4><p>中國產能過剩。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2887</span></div>
-<div><span class="stock-name">台灣大</span></div>
-<div><span class="badge-good">🟢建議持有</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">電信</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$23.15</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">12.12</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">1.91</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">10.48%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">165.9%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>電信業營收穩健，殖利率佳。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🟢建議持有 - 依據本益比12.12倍、ROE10.48%、營收成長165.9%等數據評估，體質佳值得持有。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>電信業營收穩健，殖利率佳。</p>
-<h4>風險</h4><p>電信業競爭激烈。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">3008</span></div>
-<div><span class="stock-name">大立光</span></div>
-<div><span class="badge-good">🟢建議持有</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">光學鏡頭</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$2850.00</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">18.14</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">157.08</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">11.44%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">6.6%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>光學鏡頭領導廠，智慧型手機需求回溫。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🟢建議持有 - 依據本益比18.14倍、ROE11.44%、營收成長6.6%等數據評估，體質佳值得持有。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>光學鏡頭領導廠，智慧型手機需求回溫。</p>
-<h4>風險</h4><p>智慧型手機需求放緩。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">3714</span></div>
-<div><span class="stock-name">富世達</span></div>
-<div><span class="badge-red">🔴風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">滑軌</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$70.00</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">N/A</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">-3.69</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-5.22%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">-6.9%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>滑軌產品需求波動，營運有壓。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔴風險 - 依據本益比N/A倍、ROE-5.22%、營收成長-6.9%等數據評估，基本面待觀察。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>滑軌產品需求波動，營運有壓。</p>
-<h4>風險</h4><p>景氣影響資本支出。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">2426</span></div>
-<div><span class="stock-name">鼎固</span></div>
-<div><span class="badge-red">🔴風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">營建</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$68.00</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">N/A</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">-0.25</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-2.00%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">-7.6%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>營建業景氣觀望，營收衰退。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔴風險 - 依據本益比N/A倍、ROE-2.00%、營收成長-7.6%等數據評估，基本面待觀察。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>營建業景氣觀望，營收衰退。</p>
-<h4>風險</h4><p>房市景氣放緩。</p></div>
-</div>
-
-<div class="stock-card">
-<div class="stock-header">
-<div><span class="stock-code">6168</span></div>
-<div><span class="stock-name">精華</span></div>
-<div><span class="badge-red">🔴風險</span></div>
-</div>
-<div style="color:#aaa;margin-bottom:10px;">隱形眼鏡</div>
-<div class="metrics-grid">
-<div class="metric"><div class="metric-label">股價</div><div class="metric-value">$25.80</div></div>
-<div class="metric"><div class="metric-label">本益比</div><div class="metric-value">516.00</div></div>
-<div class="metric"><div class="metric-label">EPS</div><div class="metric-value">0.05</div></div>
-<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">-0.06%</div></div>
-<div class="metric"><div class="metric-label">營收成長</div><div class="metric-value ">4.6%</div></div>
-<div class="metric"><div class="metric-label">法人動向</div><div class="metric-value" style="font-size:0.9rem">見報告</div></div>
-</div>
-<div class="section"><h3>📊 產業分析</h3><p>隱形眼鏡需求放緩，營收下滑。</p></div>
-<div class="section"><h3>📰 消息面</h3><p>留意法人動向與產業最新消息。</p></div>
-<div class="section"><h3>💡 投資建議</h3><p>🔴風險 - 依據本益比516.00倍、ROE-0.06%、營收成長4.6%等數據評估，基本面待觀察。</p></div>
-<div class="section"><h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>隱形眼鏡需求放緩，營收下滑。</p>
-<h4>風險</h4><p>消費景氣影響。</p></div>
-</div>
-
-<div class="footer">
-<p>資料來源: yfinance、TWSE | 資料日期: 2026-05-13</p>
-</div>
-</body>
-</html>
+<h2>💰 18檔持股詳細數據</h2>
+<table>
+<tr><th>代碼</th><th>名稱</th><th>收盤價</th><th>本益比</th><th>EPS</th><th>ROE%</th><th>營收成長%</th><th>三大法人</th><th>評</th></tr>
+<tr>
+<td>2330</td><td>台積電</td>
+<td class='price'>$2270.0</td>
+<td class='pe'>30.8</td>
+<td>73.7</td>
+<td class='positive'>36.21%</td>
+<td class='positive'>35.1%</td>
+<td class=''>-</td>
+<td>🟢</td>
+</tr><tr>
+<td>6667</td><td>信紘科</td>
+<td class='price'>$252.0</td>
+<td class='pe'>18.45</td>
+<td>13.66</td>
+<td class='positive'>28.25%</td>
+<td class='positive'>61.1%</td>
+<td class=''>-</td>
+<td>🟢</td>
+</tr><tr>
+<td>2317</td><td>鴻海</td>
+<td class='price'>$244.5</td>
+<td class='pe'>18.25</td>
+<td>13.4</td>
+<td class='positive'>11.25%</td>
+<td class='positive'>22.3%</td>
+<td class=''>-</td>
+<td>🟢</td>
+</tr><tr>
+<td>2313</td><td>華通</td>
+<td class='price'>$245.5</td>
+<td class='pe'>44.64</td>
+<td>5.5</td>
+<td class='positive'>14.99%</td>
+<td class='positive'>16.8%</td>
+<td class=''>-</td>
+<td>🟢</td>
+</tr><tr>
+<td>5443</td><td>均豪</td>
+<td class='price'>$126.0</td>
+<td class='pe'>49.61</td>
+<td>2.54</td>
+<td class='positive'>5.49%</td>
+<td class='positive'>23.6%</td>
+<td class=''>-</td>
+<td>🟠</td>
+</tr><tr>
+<td>1503</td><td>士電</td>
+<td class='price'>$197.0</td>
+<td class='pe'>31.42</td>
+<td>6.27</td>
+<td class='positive'>8.95%</td>
+<td class='positive'>8.6%</td>
+<td class=''>-</td>
+<td>🟢</td>
+</tr><tr>
+<td>1605</td><td>華新</td>
+<td class='price'>$35.6</td>
+<td class='pe'>47.47</td>
+<td>0.75</td>
+<td class='positive'>3.25%</td>
+<td class='negative'>-8.4%</td>
+<td class=''>-</td>
+<td>🟠</td>
+</tr><tr>
+<td>1717</td><td>長興</td>
+<td class='price'>$79.6</td>
+<td class='pe'>56.45</td>
+<td>1.41</td>
+<td class='positive'>5.99%</td>
+<td class='negative'>-10.2%</td>
+<td class=''>-</td>
+<td>🟠</td>
+</tr><tr>
+<td>6613</td><td>朋億</td>
+<td class='price'>$252.0</td>
+<td class='pe'>18.95</td>
+<td>13.3</td>
+<td class='positive'>19.2%</td>
+<td class='negative'>-11.3%</td>
+<td class=''>-</td>
+<td>🟢</td>
+</tr><tr>
+<td>4716</td><td>大立</td>
+<td class='price'>$14.95</td>
+<td class='pe'>-</td>
+<td>-0.87</td>
+<td class='negative'>-2.85%</td>
+<td class='negative'>-1.7%</td>
+<td class=''>-</td>
+<td>🔴</td>
+</tr><tr>
+<td>2486</td><td>一詮</td>
+<td class='price'>$259.0</td>
+<td class='pe'>1126.09</td>
+<td>0.23</td>
+<td class='positive'>1.29%</td>
+<td class='positive'>1.8%</td>
+<td class=''>-</td>
+<td>🟠</td>
+</tr><tr>
+<td>2402</td><td>毅嘉</td>
+<td class='price'>$67.9</td>
+<td class='pe'>29.27</td>
+<td>2.32</td>
+<td class='positive'>10.47%</td>
+<td class='positive'>8.3%</td>
+<td class=''>-</td>
+<td>🟢</td>
+</tr><tr>
+<td>1802</td><td>台玻</td>
+<td class='price'>$66.9</td>
+<td class='pe'>-</td>
+<td>-0.2</td>
+<td class='negative'>-1.39%</td>
+<td class='negative'>-6.6%</td>
+<td class=''>-</td>
+<td>🔴</td>
+</tr><tr>
+<td>2887</td><td>台新新金</td>
+<td class='price'>$23.1</td>
+<td class='pe'>12.09</td>
+<td>1.91</td>
+<td class='positive'>10.48%</td>
+<td class='positive'>165.9%</td>
+<td class=''>-</td>
+<td>🟢</td>
+</tr><tr>
+<td>3008</td><td>大立光</td>
+<td class='price'>$3135.0</td>
+<td class='pe'>19.93</td>
+<td>157.32</td>
+<td class='positive'>11.44%</td>
+<td class='positive'>6.6%</td>
+<td class=''>-</td>
+<td>🟢</td>
+</tr><tr>
+<td>3714</td><td>富采</td>
+<td class='price'>$68.2</td>
+<td class='pe'>-</td>
+<td>-3.69</td>
+<td class='negative'>-5.22%</td>
+<td class='negative'>-6.9%</td>
+<td class=''>-</td>
+<td>🔴</td>
+</tr><tr>
+<td>2426</td><td>鼎元</td>
+<td class='price'>$66.8</td>
+<td class='pe'>-</td>
+<td>-0.25</td>
+<td class='negative'>-2.0%</td>
+<td class='negative'>-7.6%</td>
+<td class=''>-</td>
+<td>🔴</td>
+</tr><tr>
+<td>6168</td><td>宏齊</td>
+<td class='price'>$26.9</td>
+<td class='pe'>538.0</td>
+<td>0.05</td>
+<td class='negative'>-0.06%</td>
+<td class='positive'>4.6%</td>
+<td class=''>-</td>
+<td>🔴</td>
+</tr>
+</table>
+<p class="updated">更新時間: 2026-05-14 14:38:37</p>
+</body></html>
