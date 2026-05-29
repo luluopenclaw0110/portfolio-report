@@ -3,233 +3,640 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>少爺持股深度分析報告 2026-05-28</title>
+<title>少爺持股深度分析 2026-05-29</title>
 <style>
-body { font-family: 'Segoe UI', sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #1a1a2e; color: #eee; }
-h1 { color: #00d4ff; border-bottom: 2px solid #00d4ff; padding-bottom: 10px; }
-h2 { color: #f0883e; margin-top: 30px; }
-h3 { color: #8b949e; }
-h4 { color: #c9d1d9; margin-bottom: 5px; }
-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-th { background: #16213e; padding: 12px; text-align: left; border-bottom: 2px solid #00d4ff; }
-td { padding: 10px; border-bottom: 1px solid #333; }
-tr:hover { background: #1f3460; }
-.price { color: #00ff88; font-weight: bold; }
-.pe { color: #ffaa00; }
-.positive { color: #00ff88; }
-.negative { color: #ff4444; }
-.rating { font-weight: bold; font-size: 16px; }
-.rating-green { color: #3fb950; }
-.rating-blue { color: #58a6ff; }
-.rating-yellow { color: #d29922; }
-.rating-orange { color: #db6d28; }
-.rating-red { color: #f85149; }
-.footer { margin-top: 40px; color: #8b949e; font-size: 12px; text-align: center; }
+body { font-family: 'Segoe UI', Arial, sans-serif; margin: 40px; background: #0d1117; color: #e6edf3; }
+h1 { color: #58a6ff; border-bottom: 2px solid #30363d; padding-bottom: 10px; }
+h2 { color: #f0883e; margin-top: 35px; }
+h3 { color: #8b949e; margin-top: 20px; }
+table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+th { background: #161b22; color: #58a6ff; padding: 10px; text-align: left; border: 1px solid #30363d; }
+td { padding: 8px 10px; border: 1px solid #30363d; }
+tr:nth-child(even) { background: #161b22; }
+.positive { color: #3fb950; }
+.negative { color: #f85149; }
+.neutral { color: #8b949e; }
+.rating-badge-green { background: #1a4d1a; color: #3fb950; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.rating-badge-blue { background: #1a3d5c; color: #58a6ff; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.rating-badge-yellow { background: #4d4d1a; color: #d29922; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.rating-badge-orange { background: #5c3d1a; color: #db6d28; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.rating-badge-red { background: #5c1a1a; color: #f85149; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.stock-card { border: 1px solid #30363d; border-radius: 8px; padding: 15px; margin: 12px 0; background: #161b22; }
+.filter-btn { padding: 6px 14px; margin: 3px; border: 1px solid #30363d; background: #21262d; color: #e6edf3; cursor: pointer; border-radius: 4px; }
+.filter-btn:hover { background: #30363d; }
+.filter-btn.active { background: #388bfd; border-color: #58a6ff; }
+.footer { margin-top: 40px; color: #8b949e; font-size: 12px; }
 </style>
 </head>
 <body>
-<h1>📊 少爺持股深度分析報告</h1>
-<p>更新日期: 2026-05-25 | 資料來源: yfinance、TWSE（法人數據更新至2026-05-22）</p>
+<h1>📊 少爺持股深度分析 2026-05-29</h1>
+<p>更新時間：2026-05-29 收盤 ｜ 資料來源：yfinance、TWSE</p>
 
-<h2>💰 18檔持股評等總覽</h2>
-<table>
-<tr><th>代碼</th><th>名稱</th><th>收盤價</th><th>本益比</th><th>EPS</th><th>ROE%</th><th>營收成長%</th><th>法人買賣超</th><th>評等</th><th>評估理由</th></tr>
-<tr>
-<td><strong>2330</strong></td><td>台積電</td><td class='price'>$2295.0</td><td class='pe'>31.2</td><td>73.6</td><td class='positive'>36.21%</td><td class='positive'>35.1%</td><td class='positive'>9,183,365</td><td class='rating rating-green'>🟢</td><td>建議持有｜ROE=36.21%、營收=35.1%</td>
-<tr>
-<td><strong>6667</strong></td><td>信紘科</td><td class='price'>$268.0</td><td class='pe'>19.6</td><td>13.67</td><td class='positive'>33.62%</td><td class='positive'>13.9%</td><td class='positive'>N/A</td><td class='rating rating-green'>🟢</td><td>建議持有｜ROE=33.62%、營收=13.9%</td>
-<tr>
-<td><strong>2317</strong></td><td>鴻海</td><td class='price'>$263.0</td><td class='pe'>19.6</td><td>13.41</td><td class='positive'>11.81%</td><td class='positive'>28.9%</td><td class='positive'>20,125,998</td><td class='rating rating-blue'>🔵</td><td>成長潛力｜ROE=11.81%、營收=28.9%</td>
-<tr>
-<td><strong>2313</strong></td><td>華通</td><td class='price'>$259.0</td><td class='pe'>47.1</td><td>5.5</td><td class='positive'>14.99%</td><td class='positive'>16.8%</td><td class='positive'>-10,648,674</td><td class='rating rating-yellow'>🟡</td><td>觀望｜ROE=14.99%、營收=16.8%</td>
-<tr>
-<td><strong>5443</strong></td><td>均豪</td><td class='price'>$122.0</td><td class='pe'>48.0</td><td>2.54</td><td class='positive'>5.49%</td><td class='positive'>23.6%</td><td class='positive'>N/A</td><td class='rating rating-yellow'>🟡</td><td>觀望｜ROE=5.49%、營收=23.6%</td>
-<tr>
-<td><strong>1503</strong></td><td>友達</td><td class='price'>$216.0</td><td class='pe'>34.6</td><td>6.25</td><td class='positive'>9.48%</td><td class='positive'>12.3%</td><td class='positive'>1,281,600</td><td class='rating rating-yellow'>🟡</td><td>觀望｜ROE=9.48%、營收=12.3%</td>
-<tr>
-<td><strong>1605</strong></td><td>台玻</td><td class='price'>$36.0</td><td class='pe'>48.0</td><td>0.75</td><td class='positive'>3.25%</td><td class='positive'>-0.08%</td><td class='positive'>44,383</td><td class='rating rating-orange'>🟠</td><td>留意｜ROE=3.25%、營收=-0.08%</td>
-<tr>
-<td><strong>1717</strong></td><td>長榮</td><td class='price'>$82.4</td><td class='pe'>58.4</td><td>1.41</td><td class='positive'>6.09%</td><td class='positive'>1.8%</td><td class='positive'>7,945,778</td><td class='rating rating-orange'>🟠</td><td>留意｜ROE=6.09%、營收=1.8%</td>
-<tr>
-<td><strong>6613</strong></td><td>朋億</td><td class='price'>$265.5</td><td class='pe'>20.0</td><td>13.3</td><td class='positive'>21.26%</td><td class='positive'>9.0%</td><td class='positive'>N/A</td><td class='rating rating-green'>🟢</td><td>建議持有｜ROE=21.26%、營收=9.0%</td>
-<tr>
-<td><strong>4716</strong></td><td>大立</td><td class='price'>$14.75</td><td class='pe'>N/A</td><td>-0.87</td><td class='positive'>-2.85%</td><td class='positive'>-0.02%</td><td class='positive'>N/A</td><td class='rating rating-red'>🔴</td><td>N/A</td>
-<tr>
-<td><strong>2486</strong></td><td>一詮</td><td class='price'>$261.0</td><td class='pe'>1186.4</td><td>0.22</td><td class='positive'>2.32%</td><td class='positive'>19.9%</td><td class='positive'>-1,004,024</td><td class='rating rating-orange'>🟠</td><td>留意｜ROE=2.32%、營收=19.9%</td>
-<tr>
-<td><strong>2402</strong></td><td>毅嘉</td><td class='price'>$66.1</td><td class='pe'>28.5</td><td>2.32</td><td class='positive'>8.71%</td><td class='positive'>15.2%</td><td class='positive'>-3,569,389</td><td class='rating rating-yellow'>🟡</td><td>觀望｜ROE=8.71%、營收=15.2%</td>
-<tr>
-<td><strong>1802</strong></td><td>台玻</td><td class='price'>$70.4</td><td class='pe'>N/A</td><td>-0.2</td><td class='positive'>0.55%</td><td class='positive'>6.1%</td><td class='positive'>2,183,117</td><td class='rating rating-red'>🔴</td><td>N/A</td>
-<tr>
-<td><strong>2887</strong></td><td>台灣大</td><td class='price'>$23.0</td><td class='pe'>12.0</td><td>1.91</td><td class='positive'>10.48%</td><td class='positive'>1.66%</td><td class='positive'>-43,653,455</td><td class='rating rating-blue'>🔵</td><td>成長潛力｜ROE=10.48%、營收=1.66%</td>
-<tr>
-<td><strong>3008</strong></td><td>大立光</td><td class='price'>$3425.0</td><td class='pe'>21.8</td><td>157.37</td><td class='positive'>11.44%</td><td class='positive'>6.6%</td><td class='positive'>-127,085</td><td class='rating rating-blue'>🔵</td><td>成長潛力｜ROE=11.44%、營收=6.6%</td>
-<tr>
-<td><strong>3714</strong></td><td>富采</td><td class='price'>$72.7</td><td class='pe'>N/A</td><td>-3.69</td><td class='positive'>-5.22%</td><td class='positive'>-0.07%</td><td class='positive'>-9,546,332</td><td class='rating rating-red'>🔴</td><td>N/A</td>
-<tr>
-<td><strong>2426</strong></td><td>鼎元</td><td class='price'>$80.9</td><td class='pe'>N/A</td><td>-0.25</td><td class='positive'>-1.52%</td><td class='positive'>-0.1%</td><td class='positive'>222,430</td><td class='rating rating-red'>🔴</td><td>N/A</td>
-<tr>
-<td><strong>6168</strong></td><td>宏齊</td><td class='price'>$27.4</td><td class='pe'>548.0</td><td>0.05</td><td class='positive'>0.2%</td><td class='positive'>7.8%</td><td class='positive'>-431,898</td><td class='rating rating-orange'>🟠</td><td>留意｜ROE=0.2%、營收=7.8%</td>
+<h2>📋 評等總覽</h2>
+<p>
+<button class="filter-btn active" onclick="filterAll()">全部</button>
+<button class="filter-btn" onclick="filterRating('green')">🟢建議持有</button>
+<button class="filter-btn" onclick="filterRating('blue')">🔵成長潛力</button>
+<button class="filter-btn" onclick="filterRating('yellow')">🟡觀望</button>
+<button class="filter-btn" onclick="filterRating('orange')">🟠留意</button>
+<button class="filter-btn" onclick="filterRating('red')">🔴風險</button>
+</p>
+<table id="stock-table">
+<tr><th>代碼</th><th>名稱</th><th>評等</th><th>股價</th><th>PE</th><th>EPS</th><th>ROE%</th><th>營收成長%</th><th>三大法人(張)</th><th>評估理由</th></tr>
+<tr class="row-green建議持有">
+<td><strong>2330</strong></td><td>台積電</td>
+<td><span class="rating-badge-green">🟢</span></td>
+<td class="price">$2355.0</td>
+<td class="pe">32.0</td>
+<td>73.67</td>
+<td class="positive">36.21%</td>
+<td class="positive">35.1%</td>
+<td class="negative">-6,147,103</td>
+<td>ROE=36.2% / 營收+35.1%</td>
+</tr>
+<tr class="row-yellow觀望">
+<td><strong>6667</strong></td><td>信紘科</td>
+<td><span class="rating-badge-yellow">🟡</span></td>
+<td class="price">$N/A</td>
+<td class="pe">N/A</td>
+<td>N/A</td>
+<td class="negative">N/A</td>
+<td class="negative">N/A</td>
+<td class="neutral">N/A</td>
+<td></td>
+</tr>
+<tr class="row-blue成長潛力">
+<td><strong>2317</strong></td><td>鴻海</td>
+<td><span class="rating-badge-blue">🔵</span></td>
+<td class="price">$289.0</td>
+<td class="pe">21.6</td>
+<td>13.41</td>
+<td class="positive">11.81%</td>
+<td class="positive">28.9%</td>
+<td class="positive">12,823,739</td>
+<td>ROE=11.8% / 營收+28.9%</td>
+</tr>
+<tr class="row-yellow觀望">
+<td><strong>2313</strong></td><td>華通</td>
+<td><span class="rating-badge-yellow">🟡</span></td>
+<td class="price">$284.5</td>
+<td class="pe">51.8</td>
+<td>5.49</td>
+<td class="positive">14.99%</td>
+<td class="positive">16.8%</td>
+<td class="negative">-39,324,591</td>
+<td>ROE=15.0% / 營收+16.8% / PE=51.8</td>
+</tr>
+<tr class="row-yellow觀望">
+<td><strong>5443</strong></td><td>均豪</td>
+<td><span class="rating-badge-yellow">🟡</span></td>
+<td class="price">$N/A</td>
+<td class="pe">N/A</td>
+<td>N/A</td>
+<td class="negative">N/A</td>
+<td class="negative">N/A</td>
+<td class="neutral">N/A</td>
+<td></td>
+</tr>
+<tr class="row-yellow觀望">
+<td><strong>1503</strong></td><td>士電</td>
+<td><span class="rating-badge-yellow">🟡</span></td>
+<td class="price">$219.0</td>
+<td class="pe">35.0</td>
+<td>6.26</td>
+<td class="positive">9.48%</td>
+<td class="positive">12.3%</td>
+<td class="negative">-3,302,066</td>
+<td>營收+12.3%</td>
+</tr>
+<tr class="row-orange留意">
+<td><strong>1605</strong></td><td>華新</td>
+<td><span class="rating-badge-orange">🟠</span></td>
+<td class="price">$38.75</td>
+<td class="pe">51.7</td>
+<td>0.75</td>
+<td class="positive">3.25%</td>
+<td class="negative">-8.4%</td>
+<td class="negative">-2,374,574</td>
+<td>營收-8.4% / PE=51.7</td>
+</tr>
+<tr class="row-orange留意">
+<td><strong>1717</strong></td><td>長興</td>
+<td><span class="rating-badge-orange">🟠</span></td>
+<td class="price">$81.2</td>
+<td class="pe">57.6</td>
+<td>1.41</td>
+<td class="positive">6.09%</td>
+<td class="positive">1.8%</td>
+<td class="negative">-4,036,619</td>
+<td>PE=57.6</td>
+</tr>
+<tr class="row-yellow觀望">
+<td><strong>6613</strong></td><td>朋億</td>
+<td><span class="rating-badge-yellow">🟡</span></td>
+<td class="price">$N/A</td>
+<td class="pe">N/A</td>
+<td>N/A</td>
+<td class="negative">N/A</td>
+<td class="negative">N/A</td>
+<td class="neutral">N/A</td>
+<td></td>
+</tr>
+<tr class="row-yellow觀望">
+<td><strong>4716</strong></td><td>大立</td>
+<td><span class="rating-badge-yellow">🟡</span></td>
+<td class="price">$N/A</td>
+<td class="pe">N/A</td>
+<td>N/A</td>
+<td class="negative">N/A</td>
+<td class="negative">N/A</td>
+<td class="neutral">N/A</td>
+<td></td>
+</tr>
+<tr class="row-orange留意">
+<td><strong>2486</strong></td><td>一詮</td>
+<td><span class="rating-badge-orange">🟠</span></td>
+<td class="price">$264.5</td>
+<td class="pe">1259.5</td>
+<td>0.21</td>
+<td class="positive">2.32%</td>
+<td class="positive">19.9%</td>
+<td class="negative">-296,090</td>
+<td>PE過高</td>
+</tr>
+<tr class="row-yellow觀望">
+<td><strong>2402</strong></td><td>毅嘉</td>
+<td><span class="rating-badge-yellow">🟡</span></td>
+<td class="price">$69.4</td>
+<td class="pe">29.9</td>
+<td>2.32</td>
+<td class="positive">8.71%</td>
+<td class="positive">15.2%</td>
+<td class="negative">-1,809,514</td>
+<td>營收+15.2%</td>
+</tr>
+<tr class="row-yellow觀望">
+<td><strong>1802</strong></td><td>台玻</td>
+<td><span class="rating-badge-yellow">🟡</span></td>
+<td class="price">$71.9</td>
+<td class="pe">N/A</td>
+<td>-0.20</td>
+<td class="positive">0.55%</td>
+<td class="positive">6.1%</td>
+<td class="negative">-10,583,662</td>
+<td></td>
+</tr>
+<tr class="row-blue成長潛力">
+<td><strong>2887</strong></td><td>台新新金</td>
+<td><span class="rating-badge-blue">🔵</span></td>
+<td class="price">$23.35</td>
+<td class="pe">12.2</td>
+<td>1.91</td>
+<td class="positive">10.48%</td>
+<td class="positive">1.7%</td>
+<td class="negative">-13,811,860</td>
+<td>ROE=10.5% / PE=12.2</td>
+</tr>
+<tr class="row-yellow觀望">
+<td><strong>3008</strong></td><td>大立光</td>
+<td><span class="rating-badge-yellow">🟡</span></td>
+<td class="price">$3515.0</td>
+<td class="pe">22.4</td>
+<td>157.21</td>
+<td class="positive">11.44%</td>
+<td class="positive">6.6%</td>
+<td class="negative">-2,508</td>
+<td>ROE=11.4%</td>
+</tr>
+<tr class="row-risk風險">
+<td><strong>3714</strong></td><td>富采</td>
+<td><span class="rating-badge-risk">🔴</span></td>
+<td class="price">$72.8</td>
+<td class="pe">N/A</td>
+<td>-3.69</td>
+<td class="negative">-5.22%</td>
+<td class="negative">-6.9%</td>
+<td class="negative">-2,989,118</td>
+<td>ROE為負</td>
+</tr>
+<tr class="row-risk風險">
+<td><strong>2426</strong></td><td>鼎元</td>
+<td><span class="rating-badge-risk">🔴</span></td>
+<td class="price">$81.2</td>
+<td class="pe">N/A</td>
+<td>-0.25</td>
+<td class="negative">-1.52%</td>
+<td class="negative">-9.9%</td>
+<td class="positive">2,291,745</td>
+<td>ROE為負</td>
+</tr>
+<tr class="row-orange留意">
+<td><strong>6168</strong></td><td>宏齊</td>
+<td><span class="rating-badge-orange">🟠</span></td>
+<td class="price">$27.9</td>
+<td class="pe">558.0</td>
+<td>0.05</td>
+<td class="positive">0.20%</td>
+<td class="positive">7.8%</td>
+<td class="negative">-546,000</td>
+<td>PE過高</td>
+</tr>
 
-<h2>📈 詳細分析</h2>
+</table>
+<script>
+function filterAll() {
+  document.querySelectorAll('table#stock-table tr').forEach(r => r.style.display = '');
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.filter-btn').classList.add('active');
+}
+function filterRating(cls) {
+  document.querySelectorAll('table#stock-table tr').forEach(r => {
+    r.style.display = r.className.includes(cls) ? '' : 'none';
+  });
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
 
-<h2>代號 2330 名稱 台積電 評等 🟢</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。台積電在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：9,183,365張（外圍=8,810,922, 投信=312,733, 自營商=371,211）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟢 建議持有｜ROE=36.21%、營收=35.1%。目標價$2295.0。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2330 台積電 <span class="rating-badge-green">🟢</span></h2>
+<span>股價: <strong>$2,355</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：半導體</strong></p>
+<p>AI需求無敵，先進製程全球壟斷，CoWoS產能持續擴張</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 6,147,103 股，，外資偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟢建議持有 — ROE=36.2% / 營收+35.1%，基本面佳，建議持續持有</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=31.2、ROE=36.21%、營收成長=35.1%。數據顯示成長動能建議持有。</p>
-<h4>風險</h4><p>PE=31.2，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-期股價。</p>
+<h4>優勢</h4>
+<p>•  股價：$2,355  •  PE：32.0  •  EPS：73.67  •  ROE：36.21%  •  營收成長：35.1%</p>
+<p>ROE=36.2% / 營收+35.1%</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 6667 名稱 信紘科 評等 🟢</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。信紘科在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：0張（外圍=0, 投信=0, 自營商=0）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟢 建議持有｜ROE=33.62%、營收=13.9%。目標價$268.0。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>6667 信紘科 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>N/A</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：半導體設備</strong></p>
+<p>台積電廠務供應商，受惠AI晶片廠投資潮</p>
+<h3>📰 消息面</h3>
+<p>法人動態：無資料</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — ，不確定性高，暫時觀察</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=19.6、ROE=33.62%、營收成長=13.9%。數據顯示成長動能建議持有。</p>
-<h4>風險</h4><p>PE=19.6，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-長預期。</p>
+<h4>優勢</h4>
+<p>•  股價：N/A  •  PE：N/A  •  EPS：N/A  •  ROE：N/A  •  營收成長：N/A</p>
+<p></p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 2317 名稱 鴻海 評等 🔵</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。鴻海在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：20,125,998張（外圍=19,616,089, 投信=176,000, 自營商=376,043）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🔵 成長潛力｜ROE=11.81%、營收=28.9%。目標價$263.0。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2317 鴻海 <span class="rating-badge-blue">🔵</span></h2>
+<span>股價: <strong>$289</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：AI伺服器</strong></p>
+<p>GB200供應商，伺服器營收持續成長，布局AI成新動能</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人買超 12,823,739 股，，外資偏多</p>
+<h3>💡 投資建議</h3>
+<p>🔵成長潛力 — ROE=11.8% / 營收+28.9%，成長動能明確，可考慮加碼</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=19.6、ROE=11.81%、營收成長=28.9%。數據顯示成長動能成長潛力。</p>
-<h4>風險</h4><p>PE=19.6，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-期交付。</p>
+<h4>優勢</h4>
+<p>•  股價：$289  •  PE：21.6  •  EPS：13.41  •  ROE：11.81%  •  營收成長：28.9%</p>
+<p>ROE=11.8% / 營收+28.9%</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 2313 名稱 華通 評等 🟡</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。華通在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：-10,648,674張（外圍=-5,969,695, 投信=42,000, 自營商=-777,979）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟡 觀望｜ROE=14.99%、營收=16.8%。目標價$259.0。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2313 華通 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$284</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：PCB</strong></p>
+<p>AI伺服器PCB需求，任意層Android HDI技術領先</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 39,324,591 股，，外資偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — ROE=15.0% / 營收+16.8% / PE=51.8，不確定性高，暫時觀察</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=47.1、ROE=14.99%、營收成長=16.8%。數據顯示成長動能觀望。</p>
-<h4>風險</h4><p>PE=47.1，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-價承壓。</p>
+<h4>優勢</h4>
+<p>•  股價：$284  •  PE：51.8  •  EPS：5.49  •  ROE：14.99%  •  營收成長：16.8%</p>
+<p>ROE=15.0% / 營收+16.8% / PE=51.8</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 5443 名稱 均豪 評等 🟡</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。均豪在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：0張（外圍=0, 投信=0, 自營商=0）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟡 觀望｜ROE=5.49%、營收=23.6%。目標價$122.0。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>5443 均豪 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>N/A</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：半導體設備</strong></p>
+<p>AOI設備供應商，受益半導體景氣回升</p>
+<h3>📰 消息面</h3>
+<p>法人動態：無資料</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — ，不確定性高，暫時觀察</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=48.0、ROE=5.49%、營收成長=23.6%。數據顯示成長動能觀望。</p>
-<h4>風險</h4><p>PE=48.0，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-性有限。</p>
+<h4>優勢</h4>
+<p>•  股價：N/A  •  PE：N/A  •  EPS：N/A  •  ROE：N/A  •  營收成長：N/A</p>
+<p></p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 1503 名稱 友達 評等 🟡</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。友達在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：1,281,600張（外圍=967,395, 投信=0, 自營商=314,205）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟡 觀望｜ROE=9.48%、營收=12.3%。目標價$216.0。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>1503 士電 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$219</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：電機/綠能</strong></p>
+<p>綠能電纜佈局，重電事業成長中</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 3,302,066 股，，外資偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 營收+12.3%，不確定性高，暫時觀察</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=34.6、ROE=9.48%、營收成長=12.3%。數據顯示成長動能觀望。</p>
-<h4>風險</h4><p>PE=34.6，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-度樂觀。</p>
+<h4>優勢</h4>
+<p>•  股價：$219  •  PE：35.0  •  EPS：6.26  •  ROE：9.48%  •  營收成長：12.3%</p>
+<p>營收+12.3%</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 1605 名稱 台玻 評等 🟠</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。台玻在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：44,383張（外圍=6,246,221, 投信=0, 自營商=-439,838）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟠 留意｜ROE=3.25%、營收=-0.08%。目標價$36.0。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>1605 華新 <span class="rating-badge-orange">🟠</span></h2>
+<span>股價: <strong>$39</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：不鏽鋼/電線電纜</strong></p>
+<p>中國不鏽鋼競爭加劇，電纜事業相對穩定</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 2,374,574 股，，外資偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟠留意 — 營收-8.4% / PE=51.7，警訊浮現，謹慎操作</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=48.0、ROE=3.25%、營收成長=-0.08%。數據顯示成長動能留意。</p>
-<h4>風險</h4><p>PE=48.0，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-度樂觀。</p>
+<h4>優勢</h4>
+<p>•  股價：$39  •  PE：51.7  •  EPS：0.75  •  ROE：3.25%  •  營收成長：-8.4%</p>
+<p>營收-8.4% / PE=51.7</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 1717 名稱 長榮 評等 🟠</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。長榮在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：7,945,778張（外圍=6,832,946, 投信=541,232, 自營商=574,600）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟠 留意｜ROE=6.09%、營收=1.8%。目標價$82.4。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>1717 長興 <span class="rating-badge-orange">🟠</span></h2>
+<span>股價: <strong>$81</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：化工</strong></p>
+<p>化工景氣仍在低谷，環氧树脂需求待復甦</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 4,036,619 股，，外資偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟠留意 — PE=57.6，警訊浮現，謹慎操作</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=58.4、ROE=6.09%、營收成長=1.8%。數據顯示成長動能留意。</p>
-<h4>風險</h4><p>PE=58.4，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-波動大。</p>
+<h4>優勢</h4>
+<p>•  股價：$81  •  PE：57.6  •  EPS：1.41  •  ROE：6.09%  •  營收成長：1.8%</p>
+<p>PE=57.6</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 6613 名稱 朋億 評等 🟢</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。朋億在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：0張（外圍=0, 投信=0, 自營商=0）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟢 建議持有｜ROE=21.26%、營收=9.0%。目標價$265.5。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>6613 朋億 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>N/A</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：半導體設備</strong></p>
+<p>半導體製程用設備，受景氣波動影響大</p>
+<h3>📰 消息面</h3>
+<p>法人動態：無資料</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — ，不確定性高，暫時觀察</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=20.0、ROE=21.26%、營收成長=9.0%。數據顯示成長動能建議持有。</p>
-<h4>風險</h4><p>PE=20.0，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-性有限。</p>
+<h4>優勢</h4>
+<p>•  股價：N/A  •  PE：N/A  •  EPS：N/A  •  ROE：N/A  •  營收成長：N/A</p>
+<p></p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 4716 名稱 大立 評等 🔴</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。大立在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：0張（外圍=0, 投信=0, 自營商=0）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🔴 N/A。目標價$14.75。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>4716 大立 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>N/A</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：特用化學品</strong></p>
+<p>特用化學品轉型中，景氣尚未明顯好轉</p>
+<h3>📰 消息面</h3>
+<p>法人動態：無資料</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — ，不確定性高，暫時觀察</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=N/A、ROE=-2.85%、營收成長=-0.02%。數據顯示成長動能N/A。</p>
-<h4>風險</h4><p>PE=N/A，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-勢不變。</p>
+<h4>優勢</h4>
+<p>•  股價：N/A  •  PE：N/A  •  EPS：N/A  •  ROE：N/A  •  營收成長：N/A</p>
+<p></p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 2486 名稱 一詮 評等 🟠</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。一詮在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：-1,004,024張（外圍=-938,200, 投信=0, 自營商=-65,824）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟠 留意｜ROE=2.32%、營收=19.9%。目標價$261.0。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2486 一詮 <span class="rating-badge-orange">🟠</span></h2>
+<span>股價: <strong>$264</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：散熱模組</strong></p>
+<p>LED/散熱需求，但評價偏高</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 296,090 股，，外資偏多</p>
+<h3>💡 投資建議</h3>
+<p>🟠留意 — PE過高，警訊浮現，謹慎操作</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=1186.4、ROE=2.32%、營收成長=19.9%。數據顯示成長動能留意。</p>
-<h4>風險</h4><p>PE=1186.4，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-人賣超。</p>
+<h4>優勢</h4>
+<p>•  股價：$264  •  PE：1259.5  •  EPS：0.21  •  ROE：2.32%  •  營收成長：19.9%</p>
+<p>PE過高</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 2402 名稱 毅嘉 評等 🟡</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。毅嘉在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：-3,569,389張（外圍=-2,742,819, 投信=0, 自營商=8,430）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟡 觀望｜ROE=8.71%、營收=15.2%。目標價$66.1。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2402 毅嘉 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$69</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：電子組裝</strong></p>
+<p>軟板組裝盈餘衰退中，營運挑戰大</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 1,809,514 股，，外資偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 營收+15.2%，不確定性高，暫時觀察</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=28.5、ROE=8.71%、營收成長=15.2%。數據顯示成長動能觀望。</p>
-<h4>風險</h4><p>PE=28.5，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-理偏低。</p>
+<h4>優勢</h4>
+<p>•  股價：$69  •  PE：29.9  •  EPS：2.32  •  ROE：8.71%  •  營收成長：15.2%</p>
+<p>營收+15.2%</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 1802 名稱 台玻 評等 🔴</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。台玻在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：2,183,117張（外圍=568,974, 投信=970,000, 自營商=644,143）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🔴 N/A。目標價$70.4。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>1802 台玻 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$72</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：玻璃</strong></p>
+<p>本業仍虧損，但綠能玻璃轉型中</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 10,583,662 股，，外資偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — ，不確定性高，暫時觀察</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=N/A、ROE=0.55%、營收成長=6.1%。數據顯示成長動能N/A。</p>
-<h4>風險</h4><p>PE=N/A，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-乏動能。</p>
+<h4>優勢</h4>
+<p>•  股價：$72  •  PE：N/A  •  EPS：-0.20  •  ROE：0.55%  •  營收成長：6.1%</p>
+<p></p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 2887 名稱 台灣大 評等 🔵</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。台灣大在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：-43,653,455張（外圍=-81,919,967, 投信=43,206,000, 自營商=1,550,512）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🔵 成長潛力｜ROE=10.48%、營收=1.66%。目標價$23.0。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2887 台新新金 <span class="rating-badge-blue">🔵</span></h2>
+<span>股價: <strong>$23</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：金控</strong></p>
+<p>合併效益浮現，PE低且股利政策佳</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 13,811,860 股，，外資偏空</p>
+<h3>💡 投資建議</h3>
+<p>🔵成長潛力 — ROE=10.5% / PE=12.2，成長動能明確，可考慮加碼</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=12.0、ROE=10.48%、營收成長=1.66%。數據顯示成長動能成長潛力。</p>
-<h4>風險</h4><p>PE=12.0，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-產品質。</p>
+<h4>優勢</h4>
+<p>•  股價：$23  •  PE：12.2  •  EPS：1.91  •  ROE：10.48%  •  營收成長：1.7%</p>
+<p>ROE=10.5% / PE=12.2</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 3008 名稱 大立光 評等 🔵</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。大立光在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：-127,085張（外圍=-119,000, 投信=1,230, 自營商=-8,315）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🔵 成長潛力｜ROE=11.44%、營收=6.6%。目標價$3425.0。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>3008 大立光 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$3,515</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：光學鏡頭</strong></p>
+<p>光學龍頭，專利壁壘深厚，高階鏡頭需求穩</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 2,508 股，，外資偏多</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — ROE=11.4%，不確定性高，暫時觀察</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=21.8、ROE=11.44%、營收成長=6.6%。數據顯示成長動能成長潛力。</p>
-<h4>風險</h4><p>PE=21.8，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-待觀察。</p>
+<h4>優勢</h4>
+<p>•  股價：$3,515  •  PE：22.4  •  EPS：157.21  •  ROE：11.44%  •  營收成長：6.6%</p>
+<p>ROE=11.4%</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 3714 名稱 富采 評等 🔴</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。富采在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：-9,546,332張（外圍=-9,593,785, 投信=0, 自營商=47,453）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🔴 N/A。目標價$72.7。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>3714 富采 <span class="rating-badge-risk">🔴</span></h2>
+<span>股價: <strong>$73</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：LED/Micro LED</strong></p>
+<p>本業仍虧損，Micro LED放量中但尚待貢献</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 2,989,118 股，，外資偏空</p>
+<h3>💡 投資建議</h3>
+<p>🔴風險 — ROE為負，基本面轉差，建議減碼</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=N/A、ROE=-5.22%、營收成長=-0.07%。數據顯示成長動能N/A。</p>
-<h4>風險</h4><p>PE=N/A，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-海市場。</p>
+<h4>優勢</h4>
+<p>•  股價：$73  •  PE：N/A  •  EPS：-3.69  •  ROE：-5.22%  •  營收成長：-6.9%</p>
+<p>ROE為負</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 2426 名稱 鼎元 評等 🔴</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。鼎元在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：222,430張（外圍=509,979, 投信=0, 自營商=-287,549）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🔴 N/A。目標價$80.9。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2426 鼎元 <span class="rating-badge-risk">🔴</span></h2>
+<span>股價: <strong>$81</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：光電/光纖</strong></p>
+<p>光纖 transduction持續虧損，復甦緩慢</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人買超 2,291,745 股，，外資偏多</p>
+<h3>💡 投資建議</h3>
+<p>🔴風險 — ROE為負，基本面轉差，建議減碼</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=N/A、ROE=-1.52%、營收成長=-0.1%。數據顯示成長動能N/A。</p>
-<h4>風險</h4><p>PE=N/A，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
-人調節。</p>
+<h4>優勢</h4>
+<p>•  股價：$81  •  PE：N/A  •  EPS：-0.25  •  ROE：-1.52%  •  營收成長：-9.9%</p>
+<p>ROE為負</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
 
-<h2>代號 6168 名稱 宏齊 評等 🟠</h2>
-<h3>📊 產業分析</h3><p>基本面穩健，AI/先進製程需求支撐營運成長。宏齊在產業中維持領先地位，供應鏈地位稳固。</p>
-<h3>📰 消息面</h3><p>法人買賣超：-431,898張（外圍=-438,898, 投信=0, 自營商=7,000）。市場氣氛偏向正面。</p>
-<h3>💡 投資建議</h3><p>🟠 留意｜ROE=0.2%、營收=7.8%。目標價$27.4。估值適中，基本面支撐投資價值。</p>
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>6168 宏齊 <span class="rating-badge-orange">🟠</span></h2>
+<span>股價: <strong>$28</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：LED封裝</strong></p>
+<p>傳統LED封裝景氣平淡，營運受限</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 546,000 股，，外資偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟠留意 — PE過高，警訊浮現，謹慎操作</p>
 <h3>🔍 評估依據</h3>
-<h4>優勢</h4><p>PE=548.0、ROE=0.2%、營收成長=7.8%。數據顯示成長動能留意。</p>
-<h4>風險</h4><p>PE=548.0，估值已部分反映成長預期。需持續追蹤營收/財報數據。</p>
+<h4>優勢</h4>
+<p>•  股價：$28  •  PE：558.0  •  EPS：0.05  •  ROE：0.20%  •  營收成長：7.8%</p>
+<p>PE過高</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+</div>
+
+<div class="footer">
+<p>更新時間：2026-05-29 收盤 ｜ 資料來源：yfinance、TWSE ｜ 評等僅供參考，不構成投資建議</p>
+</div>
+</body></html>
