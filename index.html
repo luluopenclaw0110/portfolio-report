@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>少爺持股深度分析 2026-06-09</title>
+<!-- V6-fixed: 雙軌制驗證 2026-06-10 01:20 - 5 收盤 + 1 盤中橫條 + VIX 卡片 -->
+<style>
+body { font-family: 'Segoe UI', Arial, sans-serif; margin: 40px; background: #0d1117; color: #e6edf3; }
+h1 { color: #58a6ff; border-bottom: 2px solid #30363d; padding-bottom: 10px; }
+h2 { color: #f0883e; margin-top: 35px; }
+h3 { color: #8b949e; margin-top: 20px; }
+h4 { color: #c9d1d9; }
+table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+th { background: #161b22; color: #58a6ff; padding: 10px; text-align: left; border: 1px solid #30363d; }
+td { padding: 8px 10px; border: 1px solid #30363d; }
+tr:nth-child(even) { background: #161b22; }
+.positive { color: #3fb950; }
+.negative { color: #f85149; }
+.neutral { color: #8b949e; }
+.rating-green { color: #3fb950; font-weight: bold; }
+.rating-blue { color: #58a6ff; font-weight: bold; }
+.rating-yellow { color: #d29922; font-weight: bold; }
+.rating-orange { color: #db6d28; font-weight: bold; }
+.rating-red { color: #f85149; font-weight: bold; }
+.rating-badge-green, .rating-badge-blue, .rating-badge-yellow,
+.rating-badge-orange, .rating-badge-red {
+  padding: 3px 8px; border-radius: 4px; display: inline-block;
+}
+.rating-badge-green  { background: #1a4d1a; color: #3fb950; }
+.rating-badge-blue   { background: #1a3d5c; color: #58a6ff; }
+.rating-badge-yellow { background: #4d4d1a; color: #d29922; }
+.rating-badge-orange { background: #5c3d1a; color: #db6d28; }
+.rating-badge-red    { background: #5c1a1a; color: #f85149; }
+.stock-card { border: 1px solid #30363d; border-radius: 8px; padding: 15px; margin: 12px 0; background: #161b22; }
+.stock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.filter-btn { padding: 6px 14px; margin: 3px; border: 1px solid #30363d; background: #21262d; color: #e6edf3; cursor: pointer; border-radius: 4px; }
+.filter-btn:hover { background: #30363d; }
+.filter-btn.active { background: #388bfd; border-color: #58a6ff; }
+.footer { margin-top: 40px; color: #8b949e; font-size: 12px; }
+
+/* === 卡片式市場指標 === */
+.indicator-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+.indicator-card {
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 15px;
+    background: #161b22;
+    position: relative;
+}
+.indicator-card.red    { border-left: 4px solid #f85149; background: #2d1a1a; }
+.indicator-card.orange { border-left: 4px solid #db6d28; background: #2d201a; }
+.indicator-card.yellow { border-left: 4px solid #d29922; background: #2d2a1a; }
+.indicator-card.green  { border-left: 4px solid #3fb950; background: #1a2d1a; }
+.indicator-card h3 { margin: 0 0 10px 0; font-size: 18px; }
+.indicator-card .value { font-size: 28px; font-weight: bold; margin: 8px 0; }
+.indicator-card .value.red    { color: #f85149; }
+.indicator-card .value.orange { color: #db6d28; }
+.indicator-card .value.yellow { color: #d29922; }
+.indicator-card .value.green  { color: #3fb950; }
+.indicator-card .impact { font-size: 12px; color: #8b949e; margin-top: 8px; }
+.indicator-card .stocks { font-size: 11px; color: #c9d1d9; margin-top: 6px; }
+
+/* === 評等對照表 === */
+.rating-change {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-left: 6px;
+    background: #21262d;
+    color: #8b949e;
+}
+.rating-change.up   { background: #1a3d1a; color: #3fb950; }
+.rating-change.down { background: #5c1a1a; color: #f85149; }
+.rating-change.same { background: #30363d; color: #8b949e; }
+
+.market-impact-box {
+    background: #161b22;
+    border-left: 3px solid #58a6ff;
+    padding: 10px 14px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+.market-impact-box p { margin: 4px 0; font-size: 13px; }
+.market-impact-box .sensitivity-high  { color: #f85149; font-weight: bold; }
+.market-impact-box .sensitivity-mid   { color: #db6d28; font-weight: bold; }
+.market-impact-box .sensitivity-low   { color: #d29922; font-weight: bold; }
+.market-impact-box .sensitivity-pos   { color: #3fb950; font-weight: bold; }
+
+/* === VIX 一週趨勢柱狀圖（蝦米升級版：GLOBAL RISK GAUGE 風格）=== */
+.vix-trend-card {
+    background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 100%);
+    border: 1px solid #1e3a5f;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    color: #e6edf3;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.vix-trend-label {
+    color: #fbbf24;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.vix-trend-title {
+    color: #ffffff;
+    font-size: 24px;
+    margin: 0 0 12px 0;
+    font-weight: bold;
+}
+.vix-trend-desc {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+}
+.text-warning {
+    color: #f97316;
+    font-weight: bold;
+}
+.text-danger {
+    color: #ef4444;
+    font-weight: bold;
+}
+.text-safe {
+    color: #10b981;
+    font-weight: bold;
+}
+
+.vix-trend-chart {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 160px;
+    margin-top: 30px;
+    padding: 0 10px;
+}
+.vix-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    max-width: 80px;
+}
+.vix-bar-pill {
+    width: 42px;
+    height: calc(var(--h) * 1.3);
+    background: linear-gradient(to top,
+        var(--c-dark) 0%,
+        var(--c-light) 100%);
+    border-radius: 24px 24px 4px 4px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 8px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.3),
+                inset 0 2px 4px rgba(255,255,255,0.2);
+    position: relative;
+    transition: transform 0.3s;
+}
+.vix-bar-pill:hover {
+    transform: translateY(-3px);
+}
+/* 顏色變體（從冷到熱） */
+.vix-bar-pill.blue {
+    --c-light: #60a5fa;
+    --c-dark: #1e40af;
+}
+.vix-bar-pill.cyan {
+    --c-light: #22d3ee;
+    --c-dark: #0e7490;
+}
+.vix-bar-pill.yellow {
+    --c-light: #fde047;
+    --c-dark: #ca8a04;
+}
+.vix-bar-pill.orange {
+    --c-light: #fb923c;
+    --c-dark: #c2410c;
+}
+.vix-bar-pill.red {
+    --c-light: #f87171;
+    --c-dark: #b91c1c;
+}
+
+.vix-bar-value {
+    font-size: 13px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 4px;
+}
+.vix-bar-date {
+    font-size: 11px;
+    color: #94a3b8;
+    font-family: 'SF Mono', 'Monaco', monospace;
+}
+
+@media (max-width: 600px) {
+    .vix-trend-card { padding: 18px 16px; }
+    .vix-trend-title { font-size: 20px; }
+    .vix-trend-chart { height: 130px; gap: 4px; }
+    .vix-bar-pill { width: 32px; }
+    .vix-bar-value { font-size: 11px; }
+    .vix-bar-date { font-size: 10px; }
+}
+
+/* === 盤中指標橫條（🟠 橘色系，與收盤紅色區分）=== */
+.intraday-bar {
+    background: linear-gradient(135deg, #2d201a 0%, #1f1410 100%);
+    border: 1px solid #db6d28;
+    border-left: 4px solid #db6d28;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 12px rgba(219, 109, 40, 0.15);
+}
+.intraday-bar h3 {
+    color: #fb923c;
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.intraday-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.intraday-item {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 12px 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.intraday-item .intraday-label {
+    color: #8b949e;
+    font-size: 12px;
+    font-weight: 500;
+}
+.intraday-item .intraday-value {
+    color: #fb923c;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'SF Mono', 'Monaco', monospace;
+}
+.intraday-item .intraday-value.dash {
+    color: #6e7681;
+}
+.intraday-update {
+    color: #8b949e;
+    font-size: 12px;
+    text-align: right;
+    border-top: 1px dashed #30363d;
+    padding-top: 8px;
+    margin-top: 4px;
+}
+.intraday-update .status-closed {
+    color: #3fb950;
+    font-weight: 500;
+}
+.intraday-update .status-live {
+    color: #fb923c;
+    font-weight: 500;
+}
+
+@media (max-width: 700px) {
+    .intraday-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+</style>
+</head>
+<body>
+<h1>📊 少爺持股深度分析 2026-06-09</h1>
+<p>更新時間：2026-06-09 美股收盤 ｜ 台北 2026-06-10 01:17:17 ｜ 法人：外資 +3,550,647,048 投信 -110,115,928 自營 +0 ｜ 資料來源：yfinance、TWSE T86</p>
+
+
+<h2>📊 收盤指標（6/8 收盤 - 確定值）</h2>
+<p><strong>少爺 5 張收盤卡片</strong>：每天 04:30 自動更新為最新美股/台股收盤值。04:30 之前這裡顯示「-」（等待收盤確定值）。</p>
+
+<div class="indicator-card-grid">
+  <div class="indicator-card red">
+    <h3>📊 VIX 恐慌指數</h3>
+    <div class="value red">18.92</div>
+    <div class="impact">影響：黃色邊緣區，需密切注意</div>
+    <div class="stocks">適用：全部持股（情緒指標）</div>
+  </div>
+
+  <div class="indicator-card red">
+    <h3>🔥 Fed 升息預期</h3>
+    <div class="value red">降息機率 30%</div>
+    <div class="impact">影響：利率敏感股估值壓力</div>
+    <div class="stocks">適用：半導體、AI、創新藥</div>
+  </div>
+
+  <div class="indicator-card red">
+    <h3>🤖 AI 泡沫疑慮</h3>
+    <div class="value red">1999 比較</div>
+    <div class="impact">影響：AI 股估值修正</div>
+    <div class="stocks">適用：光通訊/CPO/CoWoS/高 PE AI</div>
+  </div>
+
+  <div class="indicator-card red">
+    <h3>💰 外資動向</h3>
+    <div class="value red">-127 億</div>
+    <div class="impact">影響：6/5+6/8 連兩天大逃殺</div>
+    <div class="stocks">適用：半導體、AI（外資重倉）</div>
+  </div>
+
+  <div class="indicator-card red">
+    <h3>🌙 夜盤現況</h3>
+    <div class="value red">NQ -3.31%</div>
+    <div class="impact">影響：Nasdaq期貨持續深跌</div>
+    <div class="stocks">適用：費半相關、半導體</div>
+  </div>
+</div>
+
+<!-- ⏰ 盤中指標橫條（雙軌制：每小時整點更新，04:30 切換為 -） -->
+<div class="intraday-bar">
+  <h3>⏰ 盤中指標（即時）</h3>
+  <div class="intraday-grid">
+    <div class="intraday-item">
+      <span class="intraday-label">VIX 盤中</span>
+      <span class="intraday-value dash">-</span>
+    </div>
+    <div class="intraday-item">
+      <span class="intraday-label">S&P 期貨</span>
+      <span class="intraday-value dash">-</span>
+    </div>
+    <div class="intraday-item">
+      <span class="intraday-label">NQ 期貨</span>
+      <span class="intraday-value dash">-</span>
+    </div>
+    <div class="intraday-item">
+      <span class="intraday-label">台指期</span>
+      <span class="intraday-value dash">-</span>
+    </div>
+    <div class="intraday-item">
+      <span class="intraday-label">BTC</span>
+      <span class="intraday-value dash">-</span>
+    </div>
+  </div>
+  <div class="intraday-update">
+    🕐 最後更新：<span id="last-update">2026-06-08 13:00</span> ｜
+    <span class="status-closed" id="status">✅ 已切換為收盤指標（收盤後 - 等 04:30 更新）</span>
+  </div>
+  <!--
+    切換邏輯說明（由 cron 自動維護，無需 JS）：
+    - 04:30 之前（盤中狀態）：5 個資料顯示即時數值 + 「🕐 盤中即時」綠色狀態
+    - 04:30 之後（收盤狀態）：5 個資料顯示「-」+ 「✅ 已切換為收盤指標」綠色狀態
+    - cron 腳本：/opt/homebrew/bin/update_intraday.sh（每小時）+ update_closing.sh（04:30）
+  -->
+</div>
+
+<h3>📊 VIX 市場波動指標（一週趨勢）</h3>
+<div class="vix-trend-card">
+  <div class="vix-trend-label">GLOBAL RISK GAUGE</div>
+  <h2 class="vix-trend-title">VIX 市場波動指標</h2>
+  <p class="vix-trend-desc">
+    波動處於 <span class="text-warning">黃色邊緣區 🟡</span>，需密切注意。
+    最新日期 2026-06-08（確定值），近一週變化 <span class="text-danger">+3.15 / +19.96%</span>。
+    6/5 因就業數據強勁，VIX 從 15.40 跳升到 21.51（+40%），
+    6/8 回落至 18.92（黃色邊緣區）。6/9 美股目前盤中 22.98（尚未收盤，請以 6/8 收盤為準）。
+  </p>
+
+  <div class="vix-trend-chart">
+    <div class="vix-bar">
+      <div class="vix-bar-pill blue" style="--h: 50%;">15.77</div>
+      <div class="vix-bar-date">06-02</div>
+    </div>
+    <div class="vix-bar">
+      <div class="vix-bar-pill blue" style="--h: 51%;">16.06</div>
+      <div class="vix-bar-date">06-03</div>
+    </div>
+    <div class="vix-bar">
+      <div class="vix-bar-pill blue" style="--h: 49%;">15.40</div>
+      <div class="vix-bar-date">06-04</div>
+    </div>
+    <div class="vix-bar">
+      <div class="vix-bar-pill orange" style="--h: 68%;">21.51</div>
+      <div class="vix-bar-date">06-05</div>
+    </div>
+    <div class="vix-bar">
+      <div class="vix-bar-pill yellow" style="--h: 60%;">18.92</div>
+      <div class="vix-bar-date">06-08</div>
+    </div>
+    <div class="vix-bar">
+      <div class="vix-bar-pill orange" style="--h: 40.63%;">22.19</div>
+      <div class="vix-bar-date">06-09</div>
+    </div>
+  </div>
+</div>
+
+<div style="background: #1a2d1a; border-left: 4px solid #3fb950; padding: 12px; margin: 12px 0; border-radius: 4px;">
+  <strong>✅ 04:30 自動更新完成</strong><br>
+  本頁已於台北 2026-06-10 01:17:17 自動更新，6/09 美股收盤 VIX 為 <strong>22.19</strong>（確定值）。
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>6667 信紘科 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$277</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：半導體設備</strong></p>
+<p>台積電廠務供應商，受惠AI晶片廠投資潮</p>
+<h3>📰 消息面</h3>
+<p>法人動態：上櫃股票，TWSE 無資料</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$277  •  PE：20.3  •  EPS：13.66  •  ROE：33.6%  •  營收成長：+13.9%</p>
+<p>ROE=33.6% / 營收+13.9% / PE=20.3</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：信紘科（6667）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體設備鏈、AI 晶片廠投資降溫</p>
+<p>新評等：🟢 建議持有 → 🟡 觀望</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2317 鴻海 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$278</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：AI伺服器</strong></p>
+<p>GB200供應商，伺服器營收持續成長，布局AI成新動能</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 6,001,767 股，法人偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$278  •  PE：20.7  •  EPS：13.39  •  ROE：11.8%  •  營收成長：+28.9%</p>
+<p>ROE=11.8% / 營收+28.9% / PE=20.7 / 法人賣超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：鴻海（2317）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：AI 概念、半導體鏈；泡沫疑慮下修</p>
+<p>新評等：🔵 成長潛力 → 🟡 觀望</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2313 華通 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$276</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：PCB</strong></p>
+<p>AI伺服器PCB需求，任意層Android HDI技術領先</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 2,040,358 股，法人偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$276  •  PE：50.3  •  EPS：5.49  •  ROE：15.0%  •  營收成長：+16.8%</p>
+<p>ROE=15.0% / 營收+16.8% / PE=50.3 / 法人賣超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：華通（2313）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：AI 受惠但有泡沫風險；PCB 估值修正</p>
+<p>新評等：🔵 成長潛力 → 🟡 觀望</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>5443 均豪 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$106</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：半導體設備</strong></p>
+<p>AOI設備供應商，受益半導體景氣回升</p>
+<h3>📰 消息面</h3>
+<p>法人動態：上櫃股票，TWSE 無資料</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$106  •  PE：41.5  •  EPS：2.54  •  ROE：5.5%  •  營收成長：+23.6%</p>
+<p>ROE=5.5% / 營收+23.6% / PE=41.5</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：均豪（5443）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體設備鏈，景氣循環下修</p>
+<p>新評等：🔵 成長潛力 → 🟡 觀望</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>1503 士電 <span class="rating-badge-blue">🔵</span></h2>
+<span>股價: <strong>$230</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：電機/綠能</strong></p>
+<p>綠能電纜佈局，重電事業成長中</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人買超 63,893 股，法人偏多</p>
+<h3>💡 投資建議</h3>
+<p>🔵成長潛力 — 動能強勁，可考慮加碼 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$230  •  PE：36.7  •  EPS：6.26  •  ROE：9.5%  •  營收成長：+12.3%</p>
+<p>ROE=9.5% / 營收+12.3% / PE=36.7 / 法人買超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：士電（1503）｜ 敏感度：<span class="sensitivity-pos">反受益</span></p>
+<p>市場調整：+1</p>
+<p>影響原因：防禦股、內需、Fed 升息受惠</p>
+<p>新評等：🟡 觀望 → 🔵 成長潛力</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>1605 華新 <span class="rating-badge-orange">🟠</span></h2>
+<span>股價: <strong>$36</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：不鏽鋼/電線電纜</strong></p>
+<p>中國不鏽鋼競爭加劇，電纜事業相對穩定</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人買超 2,175,674 股，法人偏多</p>
+<h3>💡 投資建議</h3>
+<p>🟠留意 — 警訊浮現，建議謹慎或減碼 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$36  •  PE：48.7  •  EPS：0.75  •  ROE：3.2%  •  營收成長：-8.4%</p>
+<p>ROE=3.2% / 營收-8.4% / PE=48.7 / 法人買超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：華新（1605）｜ 敏感度：<span class="sensitivity-low">低敏感</span></p>
+<p>市場調整：0</p>
+<p>影響原因：傳產、Fed 升息受惠（美元資產）</p>
+<p>新評等：🟠 留意 → 🟠 留意</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>1717 長興 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$72</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：化工</strong></p>
+<p>化工景氣仍在低谷，環氧树脂需求待復甦</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 8,750,620 股，法人偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$72  •  PE：51.3  •  EPS：1.41  •  ROE：6.1%  •  營收成長：+1.8%</p>
+<p>ROE=6.1% / 營收+1.8% / PE=51.3 / 法人賣超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：長興（1717）｜ 敏感度：<span class="sensitivity-low">低敏感</span></p>
+<p>市場調整：0</p>
+<p>影響原因：傳產、Fed 升息受惠（美元資產）</p>
+<p>新評等：🟡 觀望 → 🟡 觀望</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>6613 朋億 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$255</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：半導體設備</strong></p>
+<p>半導體製程用設備，受景氣波動影響大</p>
+<h3>📰 消息面</h3>
+<p>法人動態：上櫃股票，TWSE 無資料</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$255  •  PE：19.2  •  EPS：13.30  •  ROE：21.3%  •  營收成長：+9.0%</p>
+<p>ROE=21.3% / 營收+9.0% / PE=19.2</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：朋億（6613）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體製程設備，景氣波動大</p>
+<p>新評等：🔵 成長潛力 → 🟡 觀望</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>4716 大立 <span class="rating-badge-red">🔴</span></h2>
+<span>股價: <strong>$16</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：特用化學品</strong></p>
+<p>特用化學品轉型中，景氣尚未明顯好轉</p>
+<h3>📰 消息面</h3>
+<p>法人動態：上櫃股票，TWSE 無資料</p>
+<h3>💡 投資建議</h3>
+<p>🔴風險 — 基本面轉差，建議出清 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$16  •  PE：N/A  •  EPS：-0.87  •  ROE：-2.8%  •  營收成長：-1.7%</p>
+<p>ROE=-2.8% / 營收-1.7%</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：大立（4716）｜ 敏感度：<span class="sensitivity-low">低敏感</span></p>
+<p>市場調整：0</p>
+<p>影響原因：風險已高，評等不變</p>
+<p>新評等：🔴 風險 → 🔴 風險</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2486 一詮 <span class="rating-badge-red">🔴</span></h2>
+<span>股價: <strong>$253</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：散熱模組</strong></p>
+<p>LED/散熱需求，但評價偏高</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 2,557,870 股，法人偏空</p>
+<h3>💡 投資建議</h3>
+<p>🔴風險 — 基本面轉差，建議出清 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$253  •  PE：1100.0  •  EPS：0.23  •  ROE：2.3%  •  營收成長：+19.9%</p>
+<p>ROE=2.3% / 營收+19.9% / 法人賣超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：一詮（2486）｜ 敏感度：<span class="sensitivity-high">高敏感</span></p>
+<p>市場調整：-2</p>
+<p>影響原因：謝金河：台灣光通訊無天險可守</p>
+<p>新評等：🟠 留意 → 🔴 風險</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2402 毅嘉 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$64</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：電子組裝</strong></p>
+<p>軟板組裝盈餘衰退中，營運挑戰大</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 222,782 股，法人偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$64  •  PE：27.5  •  EPS：2.32  •  ROE：8.7%  •  營收成長：+15.2%</p>
+<p>ROE=8.7% / 營收+15.2% / PE=27.5 / 法人賣超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：毅嘉（2402）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：AI 受惠但有泡沫風險；軟板景氣</p>
+<p>新評等：🔵 成長潛力 → 🟡 觀望</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>1802 台玻 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$63</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：玻璃</strong></p>
+<p>本業仍虧損，但綠能玻璃轉型中</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 12,131,405 股，法人偏空</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$63  •  PE：N/A  •  EPS：-0.20  •  ROE：0.6%  •  營收成長：+6.1%</p>
+<p>ROE=0.6% / 營收+6.1% / 法人賣超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：台玻（1802）｜ 敏感度：<span class="sensitivity-low">低敏感</span></p>
+<p>市場調整：0</p>
+<p>影響原因：傳產、建材，內需穩定</p>
+<p>新評等：🟡 觀望 → 🟡 觀望</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2887 台新新金 <span class="rating-badge-green">🟢</span></h2>
+<span>股價: <strong>$30</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：金控</strong></p>
+<p>合併效益浮現，PE低且股利政策佳</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人買超 19,475,413 股，法人偏多</p>
+<h3>💡 投資建議</h3>
+<p>🟢建議持有 — 基本面佳，建議持續持有 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$30  •  PE：15.5  •  EPS：1.91  •  ROE：13.6%  •  營收成長：+274.7%</p>
+<p>ROE=13.6% / 營收+274.7% / PE=15.5 / 法人買超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：台新新金（2887）｜ 敏感度：<span class="sensitivity-pos">反受益</span></p>
+<p>市場調整：+1</p>
+<p>影響原因：Fed 升息受惠（金融利差擴大）</p>
+<p>新評等：🔵 成長潛力 → 🟢 建議持有</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>3008 大立光 <span class="rating-badge-yellow">🟡</span></h2>
+<span>股價: <strong>$3,885</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：光學鏡頭</strong></p>
+<p>光學龍頭，專利壁壘深厚，高階鏡頭需求穩</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人買超 324,008 股，法人偏多</p>
+<h3>💡 投資建議</h3>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$3,885  •  PE：24.7  •  EPS：157.31  •  ROE：11.4%  •  營收成長：+6.6%</p>
+<p>ROE=11.4% / 營收+6.6% / PE=24.7 / 法人買超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：大立光（3008）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：手機鏈、AI 邊緣運算；估值修正</p>
+<p>新評等：🟡 觀望 → 🟡 觀望</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>3714 富采 <span class="rating-badge-red">🔴</span></h2>
+<span>股價: <strong>$66</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：LED/Micro LED</strong></p>
+<p>本業仍虧損，Micro LED放量中但尚待貢献</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 718,234 股，法人偏空</p>
+<h3>💡 投資建議</h3>
+<p>🔴風險 — 基本面轉差，建議出清 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$66  •  PE：N/A  •  EPS：-3.69  •  ROE：-5.2%  •  營收成長：-6.9%</p>
+<p>ROE=-5.2% / 營收-6.9% / 法人賣超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：富采（3714）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體鏈（已🔴，維持不變）</p>
+<p>新評等：🔴 風險 → 🔴 風險</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>2426 鼎元 <span class="rating-badge-red">🔴</span></h2>
+<span>股價: <strong>$68</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：光電/光纖</strong></p>
+<p>光纖 transduction持續虧損，復甦緩慢</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人買超 14,950 股，法人偏多</p>
+<h3>💡 投資建議</h3>
+<p>🔴風險 — 基本面轉差，建議出清 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$68  •  PE：N/A  •  EPS：-0.25  •  ROE：-1.5%  •  營收成長：-9.9%</p>
+<p>ROE=-1.5% / 營收-9.9% / 法人買超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：鼎元（2426）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體鏈；光纖 transduction 復甦緩慢</p>
+<p>新評等：🟠 留意 → 🔴 風險</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="stock-card">
+<div class="stock-header">
+<h2>6168 宏齊 <span class="rating-badge-red">🔴</span></h2>
+<span>股價: <strong>$25</strong></span>
+</div>
+<h3>📊 產業分析</h3>
+<p><strong>產業：LED封裝</strong></p>
+<p>傳統LED封裝景氣平淡，營運受限</p>
+<h3>📰 消息面</h3>
+<p>法人動態：三大法人賣超 101,000 股，法人偏空</p>
+<h3>💡 投資建議</h3>
+<p>🔴風險 — 基本面轉差，建議出清 — 2026-06-09 市場環境重評</p>
+<h3>🔍 評估依據</h3>
+<h4>優勢</h4>
+<p>•  股價：$25  •  PE：501.0  •  EPS：0.05  •  ROE：0.2%  •  營收成長：+7.8%</p>
+<p>ROE=0.2% / 營收+7.8% / 法人賣超</p>
+<h4>風險</h4>
+<p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：宏齊（6168）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體鏈；傳統 LED 封裝景氣平淡</p>
+<p>新評等：🟠 留意 → 🔴 風險</p>
+</div>
+
+</div>
+
+<hr style="border-color:#30363d">
+<div class="footer">
+<p>本報告由 Hermes Agent 自動生成 ｜ 最後更新：2026-06-10 01:17:17 ｜ 數據來源：yfinance、TWSE T86 ｜ 評等僅供參考</p>
+</div>
+<script>
+function filterRating(rating) {
+    document.querySelectorAll('#stock-table tr[class*="row-"]').forEach(r => {
+        r.style.display = (rating === 'all' || r.classList.contains('row-' + rating)) ? '' : 'none';
+    });
+    document.querySelectorAll('.stock-card').forEach(c => {
+        const badge = c.querySelector('[class*="rating-badge-"]');
+        if (!badge) return;
+        const color = Array.from(badge.classList).find(x => x.startsWith('rating-badge-')).replace('rating-badge-', '');
+        const parent = c.parentElement;
+        parent.style.display = (rating === 'all' || color === rating) ? '' : 'none';
+    });
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+}
+function filterAll() {
+    document.querySelectorAll('tr[class*="row-"]').forEach(r => r.style.display = '');
+    document.querySelectorAll('.stock-card').forEach(c => c.parentElement.style.display = '');
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
