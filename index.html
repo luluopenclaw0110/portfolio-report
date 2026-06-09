@@ -327,7 +327,7 @@ tr:nth-child(even) { background: #161b22; }
       <span class="intraday-value">-</span>
     </div>
   </div>
-  <div class="intraday-update">🕐 最後更新：<span id="last-update">2026-06-09 13:00 台北</span> | <span id="status">✅ 已切換為收盤指標</span></div>
+  <div class="intraday-update">🕐 最後更新：<span id="last-update">2026-06-09 13:00 台北</span> | <span id="status"></span></div>
 </div>
 
 <h3>📊 VIX 市場波動指標（一週趨勢）</h3>
@@ -1244,5 +1244,29 @@ function filterAll() {
     event.target.classList.add('active');
 }
 </script>
+
+<script>
+// 動態判斷時間 (盤中 vs 收盤)
+(function() {
+    const now = new Date();
+    // 台北時間（UTC+8）
+    const taipeiHour = (now.getUTCHours() + 8) % 24;
+    const taipeiMinute = now.getUTCMinutes();
+    const taipeiTime = String(taipeiHour).padStart(2, '0') + ':' + String(taipeiMinute).padStart(2, '0');
+    
+    let status = '';
+    if (taipeiHour < 4 || (taipeiHour === 4 && taipeiMinute < 30)) {
+        // 04:30 之前 = 盤中
+        status = '<span style="color: #db6d28;">🟠 盤中狀態（即時更新中）' + taipeiTime + '</span>';
+    } else {
+        // 04:30 之後 = 收盤
+        status = '<span style="color: #3fb950;">✅ 已切換為收盤指標（' + taipeiTime + '）</span>';
+    }
+    
+    const el = document.getElementById('status');
+    if (el) el.innerHTML = status;
+})();
+</script>
+
 </body>
 </html>
