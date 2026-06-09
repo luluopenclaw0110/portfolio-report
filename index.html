@@ -37,11 +37,134 @@ tr:nth-child(even) { background: #161b22; }
 .filter-btn:hover { background: #30363d; }
 .filter-btn.active { background: #388bfd; border-color: #58a6ff; }
 .footer { margin-top: 40px; color: #8b949e; font-size: 12px; }
+
+/* === 卡片式市場指標 === */
+.indicator-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+.indicator-card {
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 15px;
+    background: #161b22;
+    position: relative;
+}
+.indicator-card.red    { border-left: 4px solid #f85149; background: #2d1a1a; }
+.indicator-card.orange { border-left: 4px solid #db6d28; background: #2d201a; }
+.indicator-card.yellow { border-left: 4px solid #d29922; background: #2d2a1a; }
+.indicator-card.green  { border-left: 4px solid #3fb950; background: #1a2d1a; }
+.indicator-card h3 { margin: 0 0 10px 0; font-size: 18px; }
+.indicator-card .value { font-size: 28px; font-weight: bold; margin: 8px 0; }
+.indicator-card .value.red    { color: #f85149; }
+.indicator-card .value.orange { color: #db6d28; }
+.indicator-card .value.yellow { color: #d29922; }
+.indicator-card .value.green  { color: #3fb950; }
+.indicator-card .impact { font-size: 12px; color: #8b949e; margin-top: 8px; }
+.indicator-card .stocks { font-size: 11px; color: #c9d1d9; margin-top: 6px; }
+
+/* === 評等對照表 === */
+.rating-change {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-left: 6px;
+    background: #21262d;
+    color: #8b949e;
+}
+.rating-change.up   { background: #1a3d1a; color: #3fb950; }
+.rating-change.down { background: #5c1a1a; color: #f85149; }
+.rating-change.same { background: #30363d; color: #8b949e; }
+
+.market-impact-box {
+    background: #161b22;
+    border-left: 3px solid #58a6ff;
+    padding: 10px 14px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+.market-impact-box p { margin: 4px 0; font-size: 13px; }
+.market-impact-box .sensitivity-high  { color: #f85149; font-weight: bold; }
+.market-impact-box .sensitivity-mid   { color: #db6d28; font-weight: bold; }
+.market-impact-box .sensitivity-low   { color: #d29922; font-weight: bold; }
+.market-impact-box .sensitivity-pos   { color: #3fb950; font-weight: bold; }
+
 </style>
 </head>
 <body>
 <h1>📊 少爺持股深度分析 2026-06-09</h1>
 <p>更新時間：2026-06-09 收盤 ｜ 法人數據：2026-06-08 ｜ 資料來源：yfinance、TWSE T86</p>
+
+
+<h2>📊 市場異常關鍵指標（5 大警訊）</h2>
+<p><strong>少爺 5 張卡片快速掌握市場狀況</strong>：每張卡片顯示一個關鍵指標 + 影響 + 受影響類股。</p>
+
+<div class="indicator-card-grid">
+  <div class="indicator-card red">
+    <h3>🔥 Fed 升息預期</h3>
+    <div class="value red">降息機率 30%</div>
+    <div class="impact">影響：利率敏感股估值壓力</div>
+    <div class="stocks">適用：半導體、AI、創新藥</div>
+  </div>
+
+  <div class="indicator-card red">
+    <h3>🤖 AI 泡沫疑慮</h3>
+    <div class="value red">1999 比較</div>
+    <div class="impact">影響：AI 股估值修正</div>
+    <div class="stocks">適用：光通訊/CPO/CoWoS/高 PE AI</div>
+  </div>
+
+  <div class="indicator-card red">
+    <h3>📊 VIX 恐慌指數</h3>
+    <div class="value red">21.69</div>
+    <div class="impact">影響：恐慌區間，觸發程式賣壓</div>
+    <div class="stocks">適用：全市場（高 PE/高融資先跌）</div>
+  </div>
+
+  <div class="indicator-card red">
+    <h3>💰 外資動向</h3>
+    <div class="value red">-127 億</div>
+    <div class="impact">影響：6/5+6/8 連兩天大逃殺</div>
+    <div class="stocks">適用：半導體、AI（外資重倉）</div>
+  </div>
+
+  <div class="indicator-card red">
+    <h3>🌙 夜盤現況</h3>
+    <div class="value red">NQ -3.31%</div>
+    <div class="impact">影響：Nasdaq期貨持續深跌</div>
+    <div class="stocks">適用：費半相關、半導體</div>
+  </div>
+</div>
+
+<h3>📋 18 檔個股新評等對照表（市場環境調整後）</h3>
+<p>依「個股市場環境敏感度分類」套用新評等邏輯：原本評等 + 市場環境調整 = 新評等。</p>
+<table>
+<tr><th>代碼</th><th>名稱</th><th>類股</th><th>敏感度</th><th>原本評等</th><th>市場調整</th><th>新評等</th><th>調整原因</th></tr>
+<tr><td><strong>2330</strong></td><td>台積電</td><td>半導體龍頭</td><td class="sensitivity-mid">中敏感</td><td>🟢 建議持有</td><td>-1</td><td>🟡 觀望 <span class="rating-change down">↓</span></td><td>費半 -6.87%、ADR -6.02%</td></tr>
+<tr><td><strong>6667</strong></td><td>信紘科</td><td>半導體設備</td><td class="sensitivity-mid">中敏感</td><td>🟢 建議持有</td><td>-1</td><td>🟡 觀望 <span class="rating-change down">↓</span></td><td>半導體鏈估值修正</td></tr>
+<tr><td><strong>2317</strong></td><td>鴻海</td><td>電子代工/AI 伺服器</td><td class="sensitivity-mid">中敏感</td><td>🔵 成長潛力</td><td>-1</td><td>🟡 觀望 <span class="rating-change down">↓</span></td><td>AI 概念、半導體鏈</td></tr>
+<tr><td><strong>2313</strong></td><td>華通</td><td>PCB/AI 伺服器</td><td class="sensitivity-mid">中敏感</td><td>🔵 成長潛力</td><td>-1</td><td>🟡 觀望 <span class="rating-change down">↓</span></td><td>AI 受惠但有泡沫風險</td></tr>
+<tr><td><strong>5443</strong></td><td>均豪</td><td>半導體設備</td><td class="sensitivity-mid">中敏感</td><td>🔵 成長潛力</td><td>-1</td><td>🟡 觀望 <span class="rating-change down">↓</span></td><td>半導體鏈</td></tr>
+<tr><td><strong>1503</strong></td><td>士電</td><td>重電</td><td class="sensitivity-pos">反受益</td><td>🟡 觀望</td><td>+1</td><td>🔵 成長潛力 <span class="rating-change up">↑</span></td><td>防禦股、內需</td></tr>
+<tr><td><strong>1605</strong></td><td>華新</td><td>不鏽鋼</td><td class="sensitivity-low">低敏感</td><td>🟠 留意</td><td>0</td><td>🟠 留意 <span class="rating-change same">＝</span></td><td>傳產、Fed 升息受惠（美元資產）</td></tr>
+<tr><td><strong>1717</strong></td><td>長興</td><td>化工</td><td class="sensitivity-low">低敏感</td><td>🟡 觀望</td><td>0</td><td>🟡 觀望 <span class="rating-change same">＝</span></td><td>傳產、Fed 升息受惠</td></tr>
+<tr><td><strong>6613</strong></td><td>朋億</td><td>半導體設備</td><td class="sensitivity-mid">中敏感</td><td>🔵 成長潛力</td><td>-1</td><td>🟡 觀望 <span class="rating-change down">↓</span></td><td>半導體鏈</td></tr>
+<tr><td><strong>4716</strong></td><td>大立</td><td>光電（LED）</td><td class="sensitivity-low">低敏感</td><td>🔴 風險</td><td>0</td><td>🔴 風險 <span class="rating-change same">＝</span></td><td>風險已高，評等不變</td></tr>
+<tr><td><strong>2486</strong></td><td>一詮</td><td>光通訊/CPO</td><td class="sensitivity-high">高敏感</td><td>🟠 留意</td><td>-2</td><td>🔴 風險 <span class="rating-change down">↓↓</span></td><td>謝金河：無天險可守</td></tr>
+<tr><td><strong>2402</strong></td><td>毅嘉</td><td>軟板/AI 伺服器</td><td class="sensitivity-mid">中敏感</td><td>🔵 成長潛力</td><td>-1</td><td>🟡 觀望 <span class="rating-change down">↓</span></td><td>AI 受惠但有泡沫風險</td></tr>
+<tr><td><strong>1802</strong></td><td>台玻</td><td>玻璃</td><td class="sensitivity-low">低敏感</td><td>🟡 觀望</td><td>0</td><td>🟡 觀望 <span class="rating-change same">＝</span></td><td>傳產、建材</td></tr>
+<tr><td><strong>2887</strong></td><td>台新新金</td><td>金融</td><td class="sensitivity-pos">反受益</td><td>🔵 成長潛力</td><td>+1</td><td>🟢 建議持有 <span class="rating-change up">↑</span></td><td>升息受惠（但有股市下跌風險）</td></tr>
+<tr><td><strong>3008</strong></td><td>大立光</td><td>光學鏡頭</td><td class="sensitivity-mid">中敏感</td><td>🟡 觀望</td><td>-1</td><td>🟡 觀望 <span class="rating-change down">↓</span></td><td>手機鏈、AI 邊緣</td></tr>
+<tr><td><strong>3714</strong></td><td>富采</td><td>LED/Micro LED</td><td class="sensitivity-mid">中敏感</td><td>🔴 風險</td><td>-1</td><td>🔴 風險 <span class="rating-change same">＝</span></td><td>半導體鏈（已🔴，維持）</td></tr>
+<tr><td><strong>2426</strong></td><td>鼎元</td><td>LED</td><td class="sensitivity-mid">中敏感</td><td>🟠 留意</td><td>-1</td><td>🔴 風險 <span class="rating-change down">↓</span></td><td>半導體鏈</td></tr>
+<tr><td><strong>6168</strong></td><td>宏齊</td><td>LED</td><td class="sensitivity-mid">中敏感</td><td>🟠 留意</td><td>-1</td><td>🔴 風險 <span class="rating-change down">↓</span></td><td>半導體鏈</td></tr>
+</table>
+<p><strong>新評等分布</strong>：🟢 1 檔 ｜ 🔵 1 檔 ｜ 🟡 10 檔 ｜ 🟠 1 檔 ｜ 🔴 5 檔</p>
+
+<hr style="border-color:#30363d">
 
 <h2>🚨 近期市場異常分析（2026-06-03 至 06-09）</h2>
 <p><strong>核心結論</strong>：本週台股/美股/費半集體重挫，AI 泡沫疑慮 + Fed 升息預期為主因，建議短期留意、中期觀望。</p>
@@ -130,17 +253,17 @@ tr:nth-child(even) { background: #161b22; }
 <h2>📋 評等總覽</h2>
 <p>
 <button class="filter-btn active" onclick="filterAll()">全部</button>
-<button class="filter-btn" onclick="filterRating('green')">🟢建議持有 (2)</button>
-<button class="filter-btn" onclick="filterRating('blue')">🔵成長潛力 (6)</button>
-<button class="filter-btn" onclick="filterRating('yellow')">🟡觀望 (4)</button>
-<button class="filter-btn" onclick="filterRating('orange')">🟠留意 (4)</button>
-<button class="filter-btn" onclick="filterRating('red')">🔴風險 (2)</button>
+<button class="filter-btn" onclick="filterRating('green')">🟢建議持有 (1)</button>
+<button class="filter-btn" onclick="filterRating('blue')">🔵成長潛力 (1)</button>
+<button class="filter-btn" onclick="filterRating('yellow')">🟡觀望 (10)</button>
+<button class="filter-btn" onclick="filterRating('orange')">🟠留意 (1)</button>
+<button class="filter-btn" onclick="filterRating('red')">🔴風險 (5)</button>
 </p>
 <table id="stock-table">
 <tr><th>代碼</th><th>名稱</th><th>評等</th><th>股價</th><th>PE</th><th>EPS</th><th>ROE%</th><th>營收成長%</th><th>三大法人(張)</th><th>評估理由</th></tr>
-<tr class="row-green建議持有">
+<tr class="row-yellow觀望">
 <td><strong>2330</strong></td><td>台積電</td>
-<td><span class="rating-badge-green">🟢</span></td>
+<td><span class="rating-badge-yellow">🟡</span></td>
 <td class="price">$2,305</td>
 <td class="pe neutral">31.3</td>
 <td>73.67</td>
@@ -149,9 +272,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="negative">-19,949,016</td>
 <td>ROE=36.2% / 營收+35.1% / PE=31.3 / 法人賣超</td>
 </tr>
-<tr class="row-green建議持有">
+<tr class="row-yellow觀望">
 <td><strong>6667</strong></td><td>信紘科</td>
-<td><span class="rating-badge-green">🟢</span></td>
+<td><span class="rating-badge-yellow">🟡</span></td>
 <td class="price">$277</td>
 <td class="pe positive">20.3</td>
 <td>13.66</td>
@@ -160,9 +283,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="neutral">N/A</td>
 <td>ROE=33.6% / 營收+13.9% / PE=20.3</td>
 </tr>
-<tr class="row-blue成長潛力">
+<tr class="row-yellow觀望">
 <td><strong>2317</strong></td><td>鴻海</td>
-<td><span class="rating-badge-blue">🔵</span></td>
+<td><span class="rating-badge-yellow">🟡</span></td>
 <td class="price">$278</td>
 <td class="pe positive">20.7</td>
 <td>13.39</td>
@@ -171,9 +294,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="negative">-6,001,767</td>
 <td>ROE=11.8% / 營收+28.9% / PE=20.7 / 法人賣超</td>
 </tr>
-<tr class="row-blue成長潛力">
+<tr class="row-yellow觀望">
 <td><strong>2313</strong></td><td>華通</td>
-<td><span class="rating-badge-blue">🔵</span></td>
+<td><span class="rating-badge-yellow">🟡</span></td>
 <td class="price">$276</td>
 <td class="pe neutral">50.3</td>
 <td>5.49</td>
@@ -182,9 +305,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="negative">-2,040,358</td>
 <td>ROE=15.0% / 營收+16.8% / PE=50.3 / 法人賣超</td>
 </tr>
-<tr class="row-blue成長潛力">
+<tr class="row-yellow觀望">
 <td><strong>5443</strong></td><td>均豪</td>
-<td><span class="rating-badge-blue">🔵</span></td>
+<td><span class="rating-badge-yellow">🟡</span></td>
 <td class="price">$106</td>
 <td class="pe neutral">41.5</td>
 <td>2.54</td>
@@ -193,9 +316,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="neutral">N/A</td>
 <td>ROE=5.5% / 營收+23.6% / PE=41.5</td>
 </tr>
-<tr class="row-yellow觀望">
+<tr class="row-blue成長潛力">
 <td><strong>1503</strong></td><td>士電</td>
-<td><span class="rating-badge-yellow">🟡</span></td>
+<td><span class="rating-badge-blue">🔵</span></td>
 <td class="price">$230</td>
 <td class="pe neutral">36.7</td>
 <td>6.26</td>
@@ -226,9 +349,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="negative">-8,750,620</td>
 <td>ROE=6.1% / 營收+1.8% / PE=51.3 / 法人賣超</td>
 </tr>
-<tr class="row-blue成長潛力">
+<tr class="row-yellow觀望">
 <td><strong>6613</strong></td><td>朋億</td>
-<td><span class="rating-badge-blue">🔵</span></td>
+<td><span class="rating-badge-yellow">🟡</span></td>
 <td class="price">$255</td>
 <td class="pe positive">19.2</td>
 <td>13.30</td>
@@ -248,9 +371,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="neutral">N/A</td>
 <td>ROE=-2.8% / 營收-1.7%</td>
 </tr>
-<tr class="row-orange留意">
+<tr class="row-red風險">
 <td><strong>2486</strong></td><td>一詮</td>
-<td><span class="rating-badge-orange">🟠</span></td>
+<td><span class="rating-badge-red">🔴</span></td>
 <td class="price">$253</td>
 <td class="pe negative">1100.0</td>
 <td>0.23</td>
@@ -259,9 +382,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="negative">-2,557,870</td>
 <td>ROE=2.3% / 營收+19.9% / 法人賣超</td>
 </tr>
-<tr class="row-blue成長潛力">
+<tr class="row-yellow觀望">
 <td><strong>2402</strong></td><td>毅嘉</td>
-<td><span class="rating-badge-blue">🔵</span></td>
+<td><span class="rating-badge-yellow">🟡</span></td>
 <td class="price">$64</td>
 <td class="pe positive">27.5</td>
 <td>2.32</td>
@@ -281,9 +404,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="negative">-12,131,405</td>
 <td>ROE=0.6% / 營收+6.1% / 法人賣超</td>
 </tr>
-<tr class="row-blue成長潛力">
+<tr class="row-green建議持有">
 <td><strong>2887</strong></td><td>台新新金</td>
-<td><span class="rating-badge-blue">🔵</span></td>
+<td><span class="rating-badge-green">🟢</span></td>
 <td class="price">$30</td>
 <td class="pe positive">15.5</td>
 <td>1.91</td>
@@ -314,9 +437,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="negative">-718,234</td>
 <td>ROE=-5.2% / 營收-6.9% / 法人賣超</td>
 </tr>
-<tr class="row-orange留意">
+<tr class="row-red風險">
 <td><strong>2426</strong></td><td>鼎元</td>
-<td><span class="rating-badge-orange">🟠</span></td>
+<td><span class="rating-badge-red">🔴</span></td>
 <td class="price">$68</td>
 <td class="pe neutral">N/A</td>
 <td>-0.25</td>
@@ -325,9 +448,9 @@ tr:nth-child(even) { background: #161b22; }
 <td class="positive">+14,950</td>
 <td>ROE=-1.5% / 營收-9.9% / 法人買超</td>
 </tr>
-<tr class="row-orange留意">
+<tr class="row-red風險">
 <td><strong>6168</strong></td><td>宏齊</td>
-<td><span class="rating-badge-orange">🟠</span></td>
+<td><span class="rating-badge-red">🔴</span></td>
 <td class="price">$25</td>
 <td class="pe negative">501.0</td>
 <td>0.05</td>
@@ -340,7 +463,7 @@ tr:nth-child(even) { background: #161b22; }
 <h2>📈 個股詳細分析</h2>
 <div class="stock-card">
 <div class="stock-header">
-<h2>2330 台積電 <span class="rating-badge-green">🟢</span></h2>
+<h2>2330 台積電 <span class="rating-badge-yellow">🟡</span></h2>
 <span>股價: <strong>$2,305</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -349,19 +472,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人賣超 19,949,016 股，法人偏空</p>
 <h3>💡 投資建議</h3>
-<p>🟢建議持有 — 基本面佳，建議持續持有</p>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$2,305  •  PE：31.3  •  EPS：73.67  •  ROE：36.2%  •  營收成長：+35.1%</p>
 <p>ROE=36.2% / 營收+35.1% / PE=31.3 / 法人賣超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：台積電（2330）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：費半 -6.87%、ADR -6.02%、半導體鏈估值修正</p>
+<p>新評等：🟢 建議持有 → 🟡 觀望</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>6667 信紘科 <span class="rating-badge-green">🟢</span></h2>
+<h2>6667 信紘科 <span class="rating-badge-yellow">🟡</span></h2>
 <span>股價: <strong>$277</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -370,19 +501,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：上櫃股票，TWSE 無資料</p>
 <h3>💡 投資建議</h3>
-<p>🟢建議持有 — 基本面佳，建議持續持有</p>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$277  •  PE：20.3  •  EPS：13.66  •  ROE：33.6%  •  營收成長：+13.9%</p>
 <p>ROE=33.6% / 營收+13.9% / PE=20.3</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：信紘科（6667）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體設備鏈、AI 晶片廠投資降溫</p>
+<p>新評等：🟢 建議持有 → 🟡 觀望</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>2317 鴻海 <span class="rating-badge-blue">🔵</span></h2>
+<h2>2317 鴻海 <span class="rating-badge-yellow">🟡</span></h2>
 <span>股價: <strong>$278</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -391,19 +530,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人賣超 6,001,767 股，法人偏空</p>
 <h3>💡 投資建議</h3>
-<p>🔵成長潛力 — 動能強勁，可考慮加碼</p>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$278  •  PE：20.7  •  EPS：13.39  •  ROE：11.8%  •  營收成長：+28.9%</p>
 <p>ROE=11.8% / 營收+28.9% / PE=20.7 / 法人賣超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：鴻海（2317）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：AI 概念、半導體鏈；泡沫疑慮下修</p>
+<p>新評等：🔵 成長潛力 → 🟡 觀望</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>2313 華通 <span class="rating-badge-blue">🔵</span></h2>
+<h2>2313 華通 <span class="rating-badge-yellow">🟡</span></h2>
 <span>股價: <strong>$276</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -412,19 +559,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人賣超 2,040,358 股，法人偏空</p>
 <h3>💡 投資建議</h3>
-<p>🔵成長潛力 — 動能強勁，可考慮加碼</p>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$276  •  PE：50.3  •  EPS：5.49  •  ROE：15.0%  •  營收成長：+16.8%</p>
 <p>ROE=15.0% / 營收+16.8% / PE=50.3 / 法人賣超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：華通（2313）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：AI 受惠但有泡沫風險；PCB 估值修正</p>
+<p>新評等：🔵 成長潛力 → 🟡 觀望</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>5443 均豪 <span class="rating-badge-blue">🔵</span></h2>
+<h2>5443 均豪 <span class="rating-badge-yellow">🟡</span></h2>
 <span>股價: <strong>$106</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -433,19 +588,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：上櫃股票，TWSE 無資料</p>
 <h3>💡 投資建議</h3>
-<p>🔵成長潛力 — 動能強勁，可考慮加碼</p>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$106  •  PE：41.5  •  EPS：2.54  •  ROE：5.5%  •  營收成長：+23.6%</p>
 <p>ROE=5.5% / 營收+23.6% / PE=41.5</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：均豪（5443）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體設備鏈，景氣循環下修</p>
+<p>新評等：🔵 成長潛力 → 🟡 觀望</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>1503 士電 <span class="rating-badge-yellow">🟡</span></h2>
+<h2>1503 士電 <span class="rating-badge-blue">🔵</span></h2>
 <span>股價: <strong>$230</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -454,13 +617,21 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人買超 63,893 股，法人偏多</p>
 <h3>💡 投資建議</h3>
-<p>🟡觀望 — 不確定性高，建議觀察追蹤</p>
+<p>🔵成長潛力 — 動能強勁，可考慮加碼 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$230  •  PE：36.7  •  EPS：6.26  •  ROE：9.5%  •  營收成長：+12.3%</p>
 <p>ROE=9.5% / 營收+12.3% / PE=36.7 / 法人買超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：士電（1503）｜ 敏感度：<span class="sensitivity-pos">反受益</span></p>
+<p>市場調整：+1</p>
+<p>影響原因：防禦股、內需、Fed 升息受惠</p>
+<p>新評等：🟡 觀望 → 🔵 成長潛力</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
@@ -475,13 +646,21 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人買超 2,175,674 股，法人偏多</p>
 <h3>💡 投資建議</h3>
-<p>🟠留意 — 警訊浮現，建議謹慎或減碼</p>
+<p>🟠留意 — 警訊浮現，建議謹慎或減碼 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$36  •  PE：48.7  •  EPS：0.75  •  ROE：3.2%  •  營收成長：-8.4%</p>
 <p>ROE=3.2% / 營收-8.4% / PE=48.7 / 法人買超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：華新（1605）｜ 敏感度：<span class="sensitivity-low">低敏感</span></p>
+<p>市場調整：0</p>
+<p>影響原因：傳產、Fed 升息受惠（美元資產）</p>
+<p>新評等：🟠 留意 → 🟠 留意</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
@@ -496,19 +675,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人賣超 8,750,620 股，法人偏空</p>
 <h3>💡 投資建議</h3>
-<p>🟡觀望 — 不確定性高，建議觀察追蹤</p>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$72  •  PE：51.3  •  EPS：1.41  •  ROE：6.1%  •  營收成長：+1.8%</p>
 <p>ROE=6.1% / 營收+1.8% / PE=51.3 / 法人賣超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：長興（1717）｜ 敏感度：<span class="sensitivity-low">低敏感</span></p>
+<p>市場調整：0</p>
+<p>影響原因：傳產、Fed 升息受惠（美元資產）</p>
+<p>新評等：🟡 觀望 → 🟡 觀望</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>6613 朋億 <span class="rating-badge-blue">🔵</span></h2>
+<h2>6613 朋億 <span class="rating-badge-yellow">🟡</span></h2>
 <span>股價: <strong>$255</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -517,13 +704,21 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：上櫃股票，TWSE 無資料</p>
 <h3>💡 投資建議</h3>
-<p>🔵成長潛力 — 動能強勁，可考慮加碼</p>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$255  •  PE：19.2  •  EPS：13.30  •  ROE：21.3%  •  營收成長：+9.0%</p>
 <p>ROE=21.3% / 營收+9.0% / PE=19.2</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：朋億（6613）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體製程設備，景氣波動大</p>
+<p>新評等：🔵 成長潛力 → 🟡 觀望</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
@@ -538,19 +733,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：上櫃股票，TWSE 無資料</p>
 <h3>💡 投資建議</h3>
-<p>🔴風險 — 基本面轉差，建議出清</p>
+<p>🔴風險 — 基本面轉差，建議出清 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$16  •  PE：N/A  •  EPS：-0.87  •  ROE：-2.8%  •  營收成長：-1.7%</p>
 <p>ROE=-2.8% / 營收-1.7%</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：大立（4716）｜ 敏感度：<span class="sensitivity-low">低敏感</span></p>
+<p>市場調整：0</p>
+<p>影響原因：風險已高，評等不變</p>
+<p>新評等：🔴 風險 → 🔴 風險</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>2486 一詮 <span class="rating-badge-orange">🟠</span></h2>
+<h2>2486 一詮 <span class="rating-badge-red">🔴</span></h2>
 <span>股價: <strong>$253</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -559,19 +762,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人賣超 2,557,870 股，法人偏空</p>
 <h3>💡 投資建議</h3>
-<p>🟠留意 — 警訊浮現，建議謹慎或減碼</p>
+<p>🔴風險 — 基本面轉差，建議出清 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$253  •  PE：1100.0  •  EPS：0.23  •  ROE：2.3%  •  營收成長：+19.9%</p>
 <p>ROE=2.3% / 營收+19.9% / 法人賣超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：一詮（2486）｜ 敏感度：<span class="sensitivity-high">高敏感</span></p>
+<p>市場調整：-2</p>
+<p>影響原因：謝金河：台灣光通訊無天險可守</p>
+<p>新評等：🟠 留意 → 🔴 風險</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>2402 毅嘉 <span class="rating-badge-blue">🔵</span></h2>
+<h2>2402 毅嘉 <span class="rating-badge-yellow">🟡</span></h2>
 <span>股價: <strong>$64</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -580,13 +791,21 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人賣超 222,782 股，法人偏空</p>
 <h3>💡 投資建議</h3>
-<p>🔵成長潛力 — 動能強勁，可考慮加碼</p>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$64  •  PE：27.5  •  EPS：2.32  •  ROE：8.7%  •  營收成長：+15.2%</p>
 <p>ROE=8.7% / 營收+15.2% / PE=27.5 / 法人賣超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：毅嘉（2402）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：AI 受惠但有泡沫風險；軟板景氣</p>
+<p>新評等：🔵 成長潛力 → 🟡 觀望</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
@@ -601,19 +820,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人賣超 12,131,405 股，法人偏空</p>
 <h3>💡 投資建議</h3>
-<p>🟡觀望 — 不確定性高，建議觀察追蹤</p>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$63  •  PE：N/A  •  EPS：-0.20  •  ROE：0.6%  •  營收成長：+6.1%</p>
 <p>ROE=0.6% / 營收+6.1% / 法人賣超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：台玻（1802）｜ 敏感度：<span class="sensitivity-low">低敏感</span></p>
+<p>市場調整：0</p>
+<p>影響原因：傳產、建材，內需穩定</p>
+<p>新評等：🟡 觀望 → 🟡 觀望</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>2887 台新新金 <span class="rating-badge-blue">🔵</span></h2>
+<h2>2887 台新新金 <span class="rating-badge-green">🟢</span></h2>
 <span>股價: <strong>$30</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -622,13 +849,21 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人買超 19,475,413 股，法人偏多</p>
 <h3>💡 投資建議</h3>
-<p>🔵成長潛力 — 動能強勁，可考慮加碼</p>
+<p>🟢建議持有 — 基本面佳，建議持續持有 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$30  •  PE：15.5  •  EPS：1.91  •  ROE：13.6%  •  營收成長：+274.7%</p>
 <p>ROE=13.6% / 營收+274.7% / PE=15.5 / 法人買超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：台新新金（2887）｜ 敏感度：<span class="sensitivity-pos">反受益</span></p>
+<p>市場調整：+1</p>
+<p>影響原因：Fed 升息受惠（金融利差擴大）</p>
+<p>新評等：🔵 成長潛力 → 🟢 建議持有</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
@@ -643,13 +878,21 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人買超 324,008 股，法人偏多</p>
 <h3>💡 投資建議</h3>
-<p>🟡觀望 — 不確定性高，建議觀察追蹤</p>
+<p>🟡觀望 — 不確定性高，建議觀察追蹤 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$3,885  •  PE：24.7  •  EPS：157.31  •  ROE：11.4%  •  營收成長：+6.6%</p>
 <p>ROE=11.4% / 營收+6.6% / PE=24.7 / 法人買超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：大立光（3008）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：手機鏈、AI 邊緣運算；估值修正</p>
+<p>新評等：🟡 觀望 → 🟡 觀望</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
@@ -664,19 +907,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人賣超 718,234 股，法人偏空</p>
 <h3>💡 投資建議</h3>
-<p>🔴風險 — 基本面轉差，建議出清</p>
+<p>🔴風險 — 基本面轉差，建議出清 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$66  •  PE：N/A  •  EPS：-3.69  •  ROE：-5.2%  •  營收成長：-6.9%</p>
 <p>ROE=-5.2% / 營收-6.9% / 法人賣超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：富采（3714）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體鏈（已🔴，維持不變）</p>
+<p>新評等：🔴 風險 → 🔴 風險</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>2426 鼎元 <span class="rating-badge-orange">🟠</span></h2>
+<h2>2426 鼎元 <span class="rating-badge-red">🔴</span></h2>
 <span>股價: <strong>$68</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -685,19 +936,27 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人買超 14,950 股，法人偏多</p>
 <h3>💡 投資建議</h3>
-<p>🟠留意 — 警訊浮現，建議謹慎或減碼</p>
+<p>🔴風險 — 基本面轉差，建議出清 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$68  •  PE：N/A  •  EPS：-0.25  •  ROE：-1.5%  •  營收成長：-9.9%</p>
 <p>ROE=-1.5% / 營收-9.9% / 法人買超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：鼎元（2426）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體鏈；光纖 transduction 復甦緩慢</p>
+<p>新評等：🟠 留意 → 🔴 風險</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
 <div class="stock-card">
 <div class="stock-header">
-<h2>6168 宏齊 <span class="rating-badge-orange">🟠</span></h2>
+<h2>6168 宏齊 <span class="rating-badge-red">🔴</span></h2>
 <span>股價: <strong>$25</strong></span>
 </div>
 <h3>📊 產業分析</h3>
@@ -706,13 +965,21 @@ tr:nth-child(even) { background: #161b22; }
 <h3>📰 消息面</h3>
 <p>法人動態：三大法人賣超 101,000 股，法人偏空</p>
 <h3>💡 投資建議</h3>
-<p>🟠留意 — 警訊浮現，建議謹慎或減碼</p>
+<p>🔴風險 — 基本面轉差，建議出清 — 2026-06-09 市場環境重評</p>
 <h3>🔍 評估依據</h3>
 <h4>優勢</h4>
 <p>•  股價：$25  •  PE：501.0  •  EPS：0.05  •  ROE：0.2%  •  營收成長：+7.8%</p>
 <p>ROE=0.2% / 營收+7.8% / 法人賣超</p>
 <h4>風險</h4>
 <p>注意PE是否偏高、營收是否下滑、產業景氣循環等風險</p>
+<h4>🌍 市場環境影響</h4>
+<div class="market-impact-box">
+<p>類股：宏齊（6168）｜ 敏感度：<span class="sensitivity-mid">中敏感</span></p>
+<p>市場調整：-1</p>
+<p>影響原因：半導體鏈；傳統 LED 封裝景氣平淡</p>
+<p>新評等：🟠 留意 → 🔴 風險</p>
+</div>
+
 </div>
 
 <hr style="border-color:#30363d">
