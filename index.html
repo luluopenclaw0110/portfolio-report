@@ -42,6 +42,91 @@ tr:nth-child(even) { background: #161b22; }
 <body>
 <h1>📊 少爺持股深度分析 2026-06-09</h1>
 <p>更新時間：2026-06-09 收盤 ｜ 法人數據：2026-06-08 ｜ 資料來源：yfinance、TWSE T86</p>
+
+<h2>🚨 近期市場異常分析（2026-06-03 至 06-09）</h2>
+<p><strong>核心結論</strong>：本週台股/美股/費半集體重挫，AI 泡沫疑慮 + Fed 升息預期為主因，建議短期留意、中期觀望。</p>
+
+<h3>📊 市場分析</h3>
+<p><strong>6/3 高點 → 6/9 收盤累計跌幅</strong>：</p>
+<table>
+<tr><th>指數</th><th>6/3</th><th>6/9</th><th>變化</th><th>評等</th></tr>
+<tr><td><strong>費半</strong></td><td>13,916</td><td>12,000</td><td class="negative">-13.77%</td><td>🔴</td></tr>
+<tr><td>Nasdaq</td><td>26,853</td><td>25,199</td><td class="negative">-6.16%</td><td>🟠</td></tr>
+<tr><td>Nvidia</td><td>$214.5</td><td>$201.0</td><td class="negative">-6.28%</td><td>🟠</td></tr>
+<tr><td>台積電ADR</td><td>$436.7</td><td>$410.4</td><td class="negative">-6.02%</td><td>🟠</td></tr>
+<tr><td><strong>台股加權</strong></td><td>46,459</td><td>44,704</td><td class="negative">-3.78%</td><td>🟠</td></tr>
+<tr><td>比特幣</td><td>64,014</td><td>60,884</td><td class="negative">-4.88%</td><td>🟠</td></tr>
+<tr><td>S&P 500</td><td>7,553</td><td>7,283</td><td class="negative">-3.57%</td><td>🟡</td></tr>
+<tr><td>道瓊（傳產抗跌）</td><td>50,687</td><td>50,436</td><td class="neutral">-0.49%</td><td>🟢</td></tr>
+</table>
+<p><strong>觀察</strong>：科技/半導體/AI 股是重災區，傳產（道瓊）相對抗跌。</p>
+
+<h3>📰 消息面（5 大下跌原因）</h3>
+<p><strong>1. 🔥 強勁就業數據 → Fed 升息預期（最核心）</strong></p>
+<p>6/5 公布 5 月就業報告意外強勁，Fed 6 月降息機率從 70% 跌到 30%，部分分析師喊「2026 升息」。「Fed Rate Hike Fears Signal Further Downside Risk」。</p>
+
+<p><strong>2. 🤖 AI 泡沫疑慮（1999 比較）</strong></p>
+<p>Michael Burry（《大空頭》主角）警告「1999-2000 泡沫最後幾個月」，多位分析師喊「2026 越來越像 1999」。AI 股估值過高，投資人 take profit。</p>
+
+<p><strong>3. 🌐 全球科技股集體回檔</strong></p>
+<p>費半 6 天跌 -13.77%，台灣光通訊/CPO/CoWoS 概念股回檔最深。<strong>謝金河：「台灣光通訊無天險可守」</strong>。</p>
+
+<p><strong>4. 📊 VIX 飆升觸發程式賣壓</strong></p>
+<p>VIX 從 6/4 的 15.40 跳到 6/5 的 21.51（+40% 跳升），VIX > 20 = 恐慌區間。觸發 stop-loss + 程式賣壓惡性循環。</p>
+
+<p><strong>5. 🛢️ 油價/加密反映需求轉弱</strong></p>
+<p>6/9 油價 -5.24%、BTC -3.50%，反映全球需求擔憂。</p>
+
+<h3>💡 投資建議（5 級評等）</h3>
+<p><strong>🟠 短期（這週）：留意</strong> — VIX 還在 20+，6/13 CPI 是關鍵，<strong>不要接刀</strong>。</p>
+<p><strong>🟡 中期（這月）：觀望</strong> — AI 泡沫疑慮需時間消化，等 VIX 回 18 以下再進場。</p>
+<p><strong>🟢 長期（季度）：強基本面仍可持有</strong> — 台積電長期看好，防禦股（傳產、公用事業）可加碼。</p>
+<p><strong>🔴 短期避開</strong> — 光通訊/CPO、高融資 AI 股、加密貨幣。</p>
+
+<h3>🔍 評估依據</h3>
+
+<h4>📈 VIX 是什麼？怎麼算出來的？</h4>
+<p><strong>VIX（CBOE Volatility Index，恐慌指數）</strong> = S&P 500 指數選擇權的<strong>隱含波動率</strong>，代表市場對未來 30 天波動的<strong>預期</strong>。</p>
+<p><strong>計算步驟</strong>（CBOE 簡化版）：</p>
+<ol>
+<li>收集 S&P 500 <strong>近月 + 次月</strong>選擇權的價格（價內 + 價外）</li>
+<li>用 put-call parity 計算 <strong>forward price</strong> K₀</li>
+<li>對每個 strike K，用 bid/ask 計算 Q(K_i) 貢獻</li>
+<li>近月和次月分別計算 σ²（年化波動率）</li>
+<li>插值到 <strong>30 天</strong>，VIX = 100 × σ × √(30/365)</li>
+</ol>
+<p><strong>解讀</strong>：</p>
+<ul>
+<li>VIX &lt; 12 = 極度冷靜（可能是反指標）</li>
+<li>VIX 12-20 = 正常區間</li>
+<li><strong>VIX 20-30 = 恐慌區間（這次從 15 跳到 21 是觸發點）</strong></li>
+<li>VIX &gt; 30 = 極度恐慌（2008、2020 COVID 出現過）</li>
+</ul>
+<p><strong>特性</strong>：VIX 跟股價<strong>成反向</strong>（股市漲 VIX 跌，股市跌 VIX 漲），又稱「<strong>恐慌指數</strong>」。</p>
+
+<h4>💰 法人動向（少爺持股參考）</h4>
+<table>
+<tr><th>日期</th><th>外資差額</th><th>三大法人合計</th></tr>
+<tr><td>6/5 週五（VIX 跳升日）</td><td class="negative">-64.4 億</td><td class="negative">-58.5 億</td></tr>
+<tr><td>6/8 週一（黑色星期一）</td><td class="negative">-62.9 億</td><td class="negative">-52.5 億</td></tr>
+<tr><td><strong>合計</strong></td><td class="negative"><strong>-127 億</strong></td><td class="negative"><strong>-111 億</strong></td></tr>
+</table>
+<p>外資連兩天大逃殺，<strong>少爺持股的 AI/半導體股可能受壓</strong>。</p>
+
+<h4>🎯 關鍵觀察指標（6/9 後）</h4>
+<ol>
+<li><strong>6/13 CPI 數據</strong> — 決定 Fed 6/17 利率決策</li>
+<li><strong>VIX 是否回 18 以下</strong> — 恐慌是否結束</li>
+<li><strong>NVDA、TSM 是否止跌</strong> — 科技股風向</li>
+<li><strong>費半是否能守 12,000</strong> — 半導體信心</li>
+</ol>
+
+<h4>🌙 夜盤現況說明</h4>
+<p>少爺提到「夜盤也深跌」：6/8 收盤後美股盤前期貨確實 <strong>Nasdaq期貨 -2.69%、BTC -3.50%、原油 -5.24%</strong>。但 6/9 美股盤前已轉漲（科技股反彈），市場仍在震盪消化中。</p>
+<p>⚠️ 需少爺確認：「夜盤」是指<strong>台指期夜盤</strong>還是<strong>美股期貨</strong>？兩者狀況不同，建議也不同。</p>
+
+<hr style="border-color:#30363d">
+
 <h2>📋 評等總覽</h2>
 <p>
 <button class="filter-btn active" onclick="filterAll()">全部</button>
