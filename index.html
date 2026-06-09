@@ -215,93 +215,17 @@ tr:nth-child(even) { background: #161b22; }
     .vix-bar-date { font-size: 10px; }
 }
 
-/* === 盤中指標橫條（🟠 橘色系，與收盤紅色區分）=== */
-.intraday-bar {
-    background: linear-gradient(135deg, #2d201a 0%, #1f1410 100%);
-    border: 1px solid #db6d28;
-    border-left: 4px solid #db6d28;
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 20px 0;
-    box-shadow: 0 2px 12px rgba(219, 109, 40, 0.15);
-}
-.intraday-bar h3 {
-    color: #fb923c;
-    margin: 0 0 12px 0;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.intraday-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-bottom: 12px;
-}
-.intraday-item {
-    background: #0d1117;
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    padding: 12px 8px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-.intraday-item .intraday-label {
-    color: #8b949e;
-    font-size: 12px;
-    font-weight: 500;
-}
-.intraday-item .intraday-value {
-    color: #fb923c;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'SF Mono', 'Monaco', monospace;
-}
-.intraday-item .intraday-value.dash {
-    color: #6e7681;
-}
-.intraday-update {
-    color: #8b949e;
-    font-size: 12px;
-    text-align: right;
-    border-top: 1px dashed #30363d;
-    padding-top: 8px;
-    margin-top: 4px;
-}
-.intraday-update .status-closed {
-    color: #3fb950;
-    font-weight: 500;
-}
-.intraday-update .status-live {
-    color: #fb923c;
-    font-weight: 500;
-}
-
-@media (max-width: 700px) {
-    .intraday-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
 </style>
 </head>
 <body>
 <h1>📊 少爺持股深度分析 2026-06-09</h1>
-<p>更新時間：2026-06-09 收盤 ｜ 法人數據：2026-06-08 ｜ 資料來源：yfinance、TWSE T86</p>
+<p>更新時間：2026-06-09 美股收盤 ｜ 台北 2026-06-10 01:15:40 ｜ 法人：外資 +3,550,647,048 投信 -110,115,928 自營 +0 ｜ 資料來源：yfinance、TWSE T86</p>
 
 
-<h2>📊 收盤指標（6/8 收盤 - 確定值）</h2>
-<p><strong>少爺 5 張收盤卡片</strong>：每天 04:30 自動更新為最新美股/台股收盤值。04:30 之前這裡顯示「-」（等待收盤確定值）。</p>
+<h2>📊 市場異常關鍵指標（5 大警訊）</h2>
+<p><strong>少爺 5 張卡片快速掌握市場狀況</strong>：每張卡片顯示一個關鍵指標 + 影響 + 受影響類股。</p>
 
 <div class="indicator-card-grid">
-  <div class="indicator-card red">
-    <h3>📊 VIX 恐慌指數</h3>
-    <div class="value red">18.92</div>
-    <div class="impact">影響：黃色邊緣區，需密切注意</div>
-    <div class="stocks">適用：全部持股（情緒指標）</div>
-  </div>
-
   <div class="indicator-card red">
     <h3>🔥 Fed 升息預期</h3>
     <div class="value red">降息機率 30%</div>
@@ -329,43 +253,6 @@ tr:nth-child(even) { background: #161b22; }
     <div class="impact">影響：Nasdaq期貨持續深跌</div>
     <div class="stocks">適用：費半相關、半導體</div>
   </div>
-</div>
-
-<!-- ⏰ 盤中指標橫條（雙軌制：每小時整點更新，04:30 切換為 -） -->
-<div class="intraday-bar">
-  <h3>⏰ 盤中指標（即時）</h3>
-  <div class="intraday-grid">
-    <div class="intraday-item">
-      <span class="intraday-label">VIX 盤中</span>
-      <span class="intraday-value dash">-</span>
-    </div>
-    <div class="intraday-item">
-      <span class="intraday-label">S&P 期貨</span>
-      <span class="intraday-value dash">-</span>
-    </div>
-    <div class="intraday-item">
-      <span class="intraday-label">NQ 期貨</span>
-      <span class="intraday-value dash">-</span>
-    </div>
-    <div class="intraday-item">
-      <span class="intraday-label">台指期</span>
-      <span class="intraday-value dash">-</span>
-    </div>
-    <div class="intraday-item">
-      <span class="intraday-label">BTC</span>
-      <span class="intraday-value dash">-</span>
-    </div>
-  </div>
-  <div class="intraday-update">
-    🕐 最後更新：<span id="last-update">2026-06-08 13:00</span> ｜
-    <span class="status-closed" id="status">✅ 已切換為收盤指標（收盤後 - 等 04:30 更新）</span>
-  </div>
-  <!--
-    切換邏輯說明（由 cron 自動維護，無需 JS）：
-    - 04:30 之前（盤中狀態）：5 個資料顯示即時數值 + 「🕐 盤中即時」綠色狀態
-    - 04:30 之後（收盤狀態）：5 個資料顯示「-」+ 「✅ 已切換為收盤指標」綠色狀態
-    - cron 腳本：/opt/homebrew/bin/update_intraday.sh（每小時）+ update_closing.sh（04:30）
-  -->
 </div>
 
 <h3>📊 VIX 市場波動指標（一週趨勢）</h3>
@@ -401,16 +288,16 @@ tr:nth-child(even) { background: #161b22; }
       <div class="vix-bar-date">06-08</div>
     </div>
     <div class="vix-bar">
-      <div class="vix-bar-pill yellow" style="--h: 75.68%;" title="6/9 美股尚未收盤，暫以 6/8 收盤值 18.92 顯示">18.92*</div>
-      <div class="vix-bar-date">06-09 盤中</div>
+      <div class="vix-bar-pill orange" style="--h: 40.40%;">22.12</div>
+      <div class="vix-bar-date">06-09</div>
     </div>
   </div>
 </div>
 
-<div style="background: #2d1a1a; border-left: 4px solid #f85149; padding: 12px; margin: 12px 0; border-radius: 4px;">
-  <strong>⏰ 數據說明</strong>：本卡片顯示 6/8 收盤 VIX 18.92（確定值）。<br>
+<div style="background: #1a2d1a; border-left: 4px solid #3fb950; padding: 12px; margin: 12px 0; border-radius: 4px;">
+  <strong>✅ 04:30 自動更新完成</strong><br>
   <strong>6/9 美股收盤時間 = 台北 6/10 04:00</strong>，屆時 6/9 真實收盤 VIX 才會出爐。<br>
-  本頁將於 <strong>台北 04:30 自動更新</strong>為 6/9 收盤真實值。
+  本頁已於台北 2026-06-10 01:15:40 自動更新，6/9 美股收盤 VIX 為 22.12。
 </div>
 
 <h3>📋 18 檔個股新評等對照表（市場環境調整後）</h3>
@@ -1258,7 +1145,7 @@ tr:nth-child(even) { background: #161b22; }
 
 <hr style="border-color:#30363d">
 <div class="footer">
-<p>本報告由 Hermes Agent 自動生成 ｜ 數據來源：yfinance、TWSE T86 ｜ 評等僅供參考</p>
+<p>本報告由 Hermes Agent 自動生成 ｜ 最後更新：2026-06-10 01:15:40 ｜ 數據來源：yfinance、TWSE T86 ｜ 評等僅供參考</p>
 </div>
 <script>
 function filterRating(rating) {
